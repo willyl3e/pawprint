@@ -1,2 +1,29 @@
+@font-face {
+    font-family: PTSerif;
+    src: url('/fonts/PT_Serif/PTSerif-Regular.ttf');
+}
+
+@font-face {
+    font-family: WorkSans;
+    src: url('/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: NeueHaas;
+    src: url('/fonts/NeueHaasDisplayRoman.ttf')
+}
+
 :root {
+    font-family: PTSerif, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.small {
+    font-size:.75em;
+    color:grey;
+    font-family: WorkSans;
+}
+
+
+body {
+    margin:0;
 }

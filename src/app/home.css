@@ -1,0 +1,91 @@
+@font-face {
+    font-family: WorkSans;
+    src: url('/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: NeueHaas;
+    src: url('/fonts/NeueHaasDisplayRoman.ttf')
+}
+
+#homeContent {
+    margin:2em 20% 10em 20%;
+
+}
+
+#topHeader {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    border-bottom-style:solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(199, 199, 199);
+    padding-bottom: 1em;
+}
+
+#frontsticky {
+    position: sticky
+}
+
+.work {
+    font-family: WorkSans;
+}
+
+.lineheight8 {
+    line-height: .5;
+}
+
+.leftHeaderText {
+    font-size:.8em
+}
+
+.alignRight {
+    text-align: right;
+    align-items: right;
+}
+
+.leftHeaderContainer {
+    padding-right: 2em;
+}
+
+#nav {
+    border-bottom-style:solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(199, 199, 199);
+    padding: .1em 0 .1em 0;
+    margin-bottom:2em;
+    text-align: center;
+}
+
+#nav > div {
+    display: inline-block;
+    margin-left:.75em;
+    margin-right: .75em;
+    font-family: WorkSans;
+    font-size:.8em
+}
+
+#leadArticle {
+    display: grid;
+    grid-template-columns: 55% 45%;
+}
+
+#leadArticleText {
+    margin-left: 2em;
+}
+
+#leadTitle {
+    font-size: 3em;
+    line-height: .9;
+    display: inline-block;
+    margin-bottom: .3em;
+}
+
+#leadSubtitle {
+    font-size:1.7em;
+    line-height: .9;
+}
+
+.leadArticleSpacer {
+    margin-top:2em;
+    display: block;
+}
