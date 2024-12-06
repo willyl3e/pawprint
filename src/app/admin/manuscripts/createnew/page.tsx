@@ -1,9 +1,7 @@
 "use client";
 import "./../../admin.css";
 
-import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
-import { BSON } from "mongodb";
 import LexEditor from "@/components/lexicalEditorComponent";
 
 export default function Home() {

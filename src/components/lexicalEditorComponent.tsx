@@ -1,6 +1,4 @@
 "use client";
-import { useState } from "react";
-
 import { $getRoot, $getSelection, EditorState } from "lexical";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
@@ -10,7 +8,6 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import ToolbarPlugin from "@/components/plugins/ToolbarPlugin";
-import { render } from "react-dom";
 
 const theme = {
   // Add theme styling here if required

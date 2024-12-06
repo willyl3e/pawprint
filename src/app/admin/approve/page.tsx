@@ -3,9 +3,7 @@
 import "./../admin.css";
 import { useState, useEffect } from "react";
 import { BSON } from "mongodb";
-import e from "express";
 import Form from "@/components/editForm";
-import { stringify } from "querystring";
 import { useSession } from "next-auth/react";
 
 type CommentProps = {
@@ -17,7 +15,7 @@ function Comment({ id }: CommentProps) {
 
   async function postComment() {
     try {
-      const res = await fetch("/api/approve", {
+      await fetch("/api/approve", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +71,6 @@ function Comment({ id }: CommentProps) {
 }
 
 export default function Approve() {
-  const { data: session, status } = useSession();
   const [allManuscripts, setAllManuscripts] = useState<Manuscript[] | null>(
     null
   );

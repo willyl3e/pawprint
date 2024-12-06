@@ -4,44 +4,8 @@ import "./../admin.css";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { BSON } from "mongodb";
-import formatMongoDate from "@/components/date";
 import Link from "next/link";
 import Form from "@/components/editForm";
-import { $getRoot, $getSelection, EditorState } from "lexical";
-import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
-import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import ToolbarPlugin from "@/components/plugins/ToolbarPlugin";
-import LexEditor from "@/components/lexicalEditorComponent";
-
-const theme = {
-};
-
-function onError(error: unknown) {
-  console.error("Lexical Editor Error:", error);
-}
-
-const initialConfig = {
-  namespace: "MyEditor",
-  theme,
-  onError,
-};
-
-type modifyMenuType = {
-  shown: boolean;
-  articleId: BSON.ObjectId | null;
-  category: string | null;
-  image: string | null;
-  path: string | null;
-  author: string | null;
-  title: string | null;
-  history: string[] | null;
-  content: string | null;
-};
 
 export default function Home() {
   const { data: session, status } = useSession();

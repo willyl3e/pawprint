@@ -1,5 +1,5 @@
 import algoliasearch from "algoliasearch";
-import { InstantSearch, SearchBox, Hits } from "react-instantsearch";
+import { SearchBox, Hits } from "react-instantsearch";
 import { InstantSearchNext } from "react-instantsearch-nextjs";
 import Link from "next/link";
 

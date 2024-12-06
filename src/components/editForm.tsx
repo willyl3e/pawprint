@@ -1,8 +1,6 @@
 import { BSON } from "mongodb";
 import { useState } from "react";
 import LexEditor from "./lexicalEditorComponent";
-import { json } from "stream/consumers";
-import { parseEditorState } from "lexical/LexicalUpdates";
 
 type modifyMenuType = {
   shown: boolean;
