@@ -28,7 +28,6 @@ export async function POST(req: Request) {
   const db = client.db("pawprint");
   const collection: Collection<Manuscript> = db.collection("manuscripts");
 
-  const authenticatedUserId = session!.user.id;
   const authenticatedUserName = session!.user.name || "";
 
   try {

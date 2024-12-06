@@ -14,7 +14,7 @@ type ArticleInfo = {
   path: string;
 };
 
-function filterArticles(
+function FilterArticles(
   cat: string,
   recency: number,
   numberOfArticles: number
@@ -63,7 +63,7 @@ function generateArticleElements(
   recency: number,
   numberOfArticles: number
 ) {
-  const returnedArticleArray = filterArticles(cat, recency, numberOfArticles);
+  const returnedArticleArray = FilterArticles(cat, recency, numberOfArticles);
 
   console.log(returnedArticleArray);
 
@@ -85,8 +85,6 @@ function generateArticleElements(
 }
 
 export default function Home() {
-  const date = "";
-
   useEffect(() => {
     document.title = "SHS Pawprint";
   });

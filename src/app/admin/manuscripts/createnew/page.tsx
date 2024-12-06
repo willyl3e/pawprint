@@ -1,7 +1,7 @@
 "use client";
 import "./../../admin.css";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import LexEditor from "@/components/lexicalEditorComponent";
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async () => {
     try {
       const res = await fetch("/api/modifyManuscript", {
         method: "POST",

@@ -142,7 +142,7 @@ export default function Home() {
               <span className="adminBlock">{article.category}</span>
               <div style={{ marginTop: "1em" }}>
                 {article.history?.map((historyItem) => (
-                  <span className="historyItem">{historyItem}</span>
+                  <span className="historyItem" key={new BSON.ObjectId().toString()}>{historyItem}</span>
                 ))}
               </div>
               <div style={{ display: "block", paddingTop: "15px" }}>

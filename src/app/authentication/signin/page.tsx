@@ -76,7 +76,7 @@ const CustomLogin: React.FC = () => {
       <hr style={{ margin: "1.5rem 0" }} />
 
       <p style={{ textAlign: "center", marginTop: "1rem" }}>
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <Link className="lsr" href="/authentication/createaccount">
           Create an account
         </Link>

@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 app.use(express.json());
 import clientPromise from '@/lib/mongodb';
@@ -6,17 +6,13 @@ import clientPromise from '@/lib/mongodb';
 export async function POST(req: Request) {
   try {
     const bodyText = await req.text();
-    const { category, recency, numberOfArticles } = JSON.parse(bodyText);
+    const { category, numberOfArticles } = JSON.parse(bodyText);
 
     const client = await clientPromise;
     const db = client.db("pawprint");
     const collection = db.collection("articles");
 
-    const query: any = {};
-    if (category) query.category = category;
-    
-
-    const data = await collection.find(query).toArray();
+    const data = await collection.find({category}).toArray();
 
     if (numberOfArticles) {
       data.splice(numberOfArticles)

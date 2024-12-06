@@ -40,7 +40,7 @@ export default function Form({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async () => {
     // e.preventDefault(); 
     if (!serializedState) {
       console.error("No serialized state available");

@@ -14,7 +14,7 @@ interface Manuscript {
 }
 
 export async function POST(req: Request) {
-  const { actionType, id, title, content, path, category, img } =
+  const { actionType, id, title, content, category, img } =
     JSON.parse(await req.text());
   const session = await getServerSession(options);
 

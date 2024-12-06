@@ -54,7 +54,7 @@ export default function Recall() {
           <span className="adminBlock">{x.category}</span>
           <div style={{ marginTop: "1em" }}>
             {x.history?.map((historyItem) => (
-              <span className="historyItem">{historyItem}</span>
+              <span className="historyItem" key={x._id!.toString()}>{historyItem}</span>
             ))}
           </div>
           <button

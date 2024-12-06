@@ -25,7 +25,7 @@ export default function Home() {
         Welcome, {session.user?.name || "noBold"}!
       </h1>
       <h2 className="noBold adminSubheader">
-        We're glad that you're a member of Pawprint! Here, you can make changes
+        We&apos;re glad that you&apos;re a member of Pawprint! Here, you can make changes
         to the Pawprint website.
       </h2>
 

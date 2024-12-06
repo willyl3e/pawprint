@@ -1,5 +1,5 @@
 "use client";
-import { $getRoot, $getSelection, EditorState } from "lexical";
+import { EditorState } from "lexical";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
@@ -22,61 +22,6 @@ interface EditorProps {
   initialContent: string;
 }
 
-type LexicalNode = {
-  detail: number;
-  format: number;
-  mode: string;
-  style: string;
-  text: string;
-  type: string;
-  version: number;
-};
-
-type ParagraphNode = {
-  children: LexicalNode[];
-  direction: string;
-  format: string;
-  indent: number;
-  type: string;
-  version: number;
-  textFormat: number;
-  textStyle: string;
-};
-
-type RootNode = {
-  children: ParagraphNode[];
-  direction: string;
-  format: string;
-  indent: number;
-  type: string;
-  version: number;
-};
-
-type LexicalState = {
-  root: RootNode;
-};
-
-
-
-function renderLexicalState(contentObject:LexicalState|undefined) {
-  const root = contentObject!.root;
-
-  return root.children.map((paragraph, index) => {
-    const paragraphContent = paragraph.children.map((child, i) => {
-      let formattedText = <>{child.text}</>;
-
-      if (child.format === 1) {
-        formattedText = <strong key={i}>{formattedText}</strong>;
-      } else if (child.format === 2) {
-        formattedText = <em key={i}>{formattedText}</em>;
-      }
-
-      return formattedText;
-    });
-
-    return <p key={index}>{paragraphContent}</p>;
-  });
-}
 
 function LexEditor({ onSerializedStateChange, initialContent }: EditorProps) {
 

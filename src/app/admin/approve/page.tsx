@@ -4,7 +4,7 @@ import "./../admin.css";
 import { useState, useEffect } from "react";
 import { BSON } from "mongodb";
 import Form from "@/components/editForm";
-import { useSession } from "next-auth/react";
+import { stringify } from "querystring";
 
 type CommentProps = {
   id: string;
@@ -36,7 +36,7 @@ function Comment({ id }: CommentProps) {
     setComment(newComment);
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit() {
     postComment(); // Call the async function
   }
 
@@ -173,7 +173,7 @@ export default function Approve() {
           <span className="adminBlock">{x.category}</span>
           <div style={{ marginTop: "1em" }}>
             {x.history?.map((historyItem) => (
-              <span className="historyItem">{historyItem}</span>
+              <span key={x._id?.toString()} className="historyItem">{historyItem}</span>
             ))}
           </div>
           <div style={{marginTop:"10px", marginBottom:"20px"}}>
@@ -239,7 +239,7 @@ export default function Approve() {
               Delete
             </button>
           </div>
-          <Comment id={x._id?.toString()!} />
+          <Comment id={x._id!.toString()!} />
         </div>
       ))}
       {showModifyMenu.shown && (

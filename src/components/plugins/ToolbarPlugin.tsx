@@ -15,8 +15,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import './toolbar.css'
 
 const LowPriority = 1;
-const iconSize = 20;
-
 
 export default function ToolbarPlugin() {
   const [editor] = useLexicalComposerContext();
@@ -25,8 +23,6 @@ export default function ToolbarPlugin() {
   const [canRedo, setCanRedo] = useState(false);
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
-  const [isUnderline, setIsUnderline] = useState(false);
-  const [isStrikethrough, setIsStrikethrough] = useState(false);
 
   const $updateToolbar = useCallback(() => {
     const selection = $getSelection();
@@ -34,8 +30,6 @@ export default function ToolbarPlugin() {
       // Update text format
       setIsBold(selection.hasFormat("bold"));
       setIsItalic(selection.hasFormat("italic"));
-      setIsUnderline(selection.hasFormat("underline"));
-      setIsStrikethrough(selection.hasFormat("strikethrough"));
     }
   }, []);
 
@@ -48,7 +42,7 @@ export default function ToolbarPlugin() {
       }),
       editor.registerCommand(
         SELECTION_CHANGE_COMMAND,
-        (_payload, _newEditor) => {
+        (/*_payload, _newEditor*/) => {
           $updateToolbar();
           return false;
         },
