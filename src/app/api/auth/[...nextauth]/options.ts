@@ -95,5 +95,8 @@ export const options: NextAuthOptions = {
       return session;
     },
   },
+  pages:{
+    signIn:'/authentication/signin'
+  }
 };
 

@@ -8,9 +8,9 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <nav>
+      <nav className="bg-black">
         <Link href="/">
-          <img src="/pawprintlogo.png" width="250px"></img>
+          <img src="/pawprintlogo.png" width="250px" className="place-self-center"></img>
         </Link>
       </nav>
       {children}

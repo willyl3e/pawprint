@@ -1,0 +1,16 @@
+.toolbar {
+    display:inline-block;
+    border:solid;
+    border-radius:1px;
+    border:black;
+    background-color: black;
+}
+
+.toolbar-item {
+    background-color: white;
+    border:none;
+}
+
+.toolbar-item:active {
+    background-color: #e9f1ff;
+}

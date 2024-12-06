@@ -11,15 +11,20 @@
     "create-account": "ts-node src/scripts/accountCreation.ts"
   },
   "dependencies": {
+    "@lexical/react": "^0.21.0",
+    "algoliasearch": "^4.24.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "express": "^4.21.1",
+    "lexical": "^0.21.0",
+    "luxon": "^3.5.0",
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.1",
     "next": "14.2.15",
     "next-auth": "^4.24.10",
     "react": "^18",
     "react-dom": "^18",
+    "react-instantsearch-nextjs": "^0.3.18",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
@@ -27,8 +32,11 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
     "tsx": "^4.19.2",
     "typescript": "^5"
   }

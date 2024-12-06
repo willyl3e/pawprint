@@ -4,24 +4,13 @@ import "./../../admin.css";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { BSON } from "mongodb";
-
-type modifyMenuType = {
-  shown: boolean;
-  articleId: BSON.ObjectId | null;
-  category: string | null;
-  image: string | null;
-  path: string | null;
-  author: string | null;
-  title: string | null;
-  history: string[] | null;
-  content: string | null;
-};
+import LexEditor from "@/components/lexicalEditorComponent";
 
 export default function Home() {
+  const [serializedState, setSerializedState] = useState<string | null>(null);
   const [successful, setSuccessful] = useState<boolean | undefined>(undefined);
   const [formData, setFormData] = useState({
     title: "",
-    path: "",
     category: "",
     image: "",
     content: "",
@@ -35,7 +24,6 @@ export default function Home() {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent page reload
     try {
       const res = await fetch("/api/modifyManuscript", {
         method: "POST",
@@ -45,8 +33,7 @@ export default function Home() {
         body: JSON.stringify({
           actionType: "create",
           title: formData.title,
-          content: formData.content,
-          path: formData.path,
+          content: serializedState,
           category: formData.category,
           img: formData.image,
         }),
@@ -77,16 +64,6 @@ export default function Home() {
           />
         </label>
         <label>
-          Path
-          <input
-            type="text"
-            name="path"
-            value={formData.path}
-            required
-            onChange={handleChange}
-          />
-        </label>
-        <label>
           Category
           <input
             type="text"
@@ -97,7 +74,7 @@ export default function Home() {
           />
         </label>
         <label>
-          Image SRC
+          Image Source
           <input
             type="text"
             name="image"
@@ -108,13 +85,9 @@ export default function Home() {
         </label>
         <label>
           Content
-          <textarea
-            name="content" // Ensure the name is "content"
-            value={formData.content} // Bind textarea to formData.content
-            onChange={handleChange} // Handle the change in the textarea
-            required
-          />
         </label>
+        <LexEditor onSerializedStateChange={setSerializedState} initialContent="none" />
+
         <span className="adminCNM">
           When your manuscript is created, it will be be visible to editors
           immediately and may be subject to editing. Submit only your final

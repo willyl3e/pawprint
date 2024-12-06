@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import "./../../globals.css"
-import "./article.css"
+import "./article.css";
+import Link from "next/link";
 
 type ReturnedArticle = {
   title: string;
@@ -10,8 +10,43 @@ type ReturnedArticle = {
   date: string;
   content: string;
   path: string;
+  img: string;
+  name:string;
+  pfp:string;
+};
+type LexicalNode = {
+  detail: number;
+  format: number;
+  mode: string;
+  style: string;
+  text: string;
+  type: string;
+  version: number;
 };
 
+type ParagraphNode = {
+  children: LexicalNode[];
+  direction: string;
+  format: string;
+  indent: number;
+  type: string;
+  version: number;
+  textFormat: number;
+  textStyle: string;
+};
+
+type RootNode = {
+  children: ParagraphNode[];
+  direction: string;
+  format: string;
+  indent: number;
+  type: string;
+  version: number;
+};
+
+type LexicalState = {
+  root: RootNode;
+};
 export default function ClientPage({
   params,
 }: {
@@ -22,13 +57,15 @@ export default function ClientPage({
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("/api/retrieveArticle", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ path: params.articlePath }), // wrap in an object
-        });
+        const res = await fetch(
+          `/api/retrieveArticle?articlePath=${params.articlePath}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);
@@ -46,6 +83,8 @@ export default function ClientPage({
       }
     }
 
+    console.log(article);
+
     fetchData();
   }, [params.articlePath]);
 
@@ -55,18 +94,66 @@ export default function ClientPage({
     }
   }, [article]);
 
+  let contentObject: LexicalState | undefined;
+
+  if (article) {
+    contentObject = JSON.parse(article.content);
+  }
+
+  function renderLexicalState() {
+    const root = contentObject!.root;
+
+    return root.children.map((paragraph, index) => {
+      const paragraphContent = paragraph.children.map((child, i) => {
+        let formattedText = <>{child.text}</>;
+
+        if (child.format === 1) {
+          formattedText = <strong key={i}>{formattedText}</strong>;
+        } else if (child.format === 2) {
+          formattedText = <em key={i}>{formattedText}</em>;
+        }
+
+        return formattedText;
+      });
+
+      return <p key={index}>{paragraphContent}</p>;
+    });
+  }
+
   return (
     <div>
+      <nav>
+        <Link href="/">
+          <img src="/pawprintlogo.png" width="250px" style={{placeSelf:"Center"}}></img>
+        </Link>
+      </nav>
       {article ? (
-        <div>
-          <h1>{article.title}</h1>
-          <p>{article.author}</p>
-          <p>{article.date}</p>
-          <p>{article.content}</p>
-        </div>
+        <>
+          <div className="articleHead">
+            <span className="title">{article.title}</span>
+            <span className="datePub">{article.date}</span>
+          </div>
+          <div className="imgContainer">
+            <img src={article.img}></img>
+          </div>
+          <main>
+            <div className="infoBox">
+              <div className="authorImageBox">
+                <img src={article.pfp} className="pfp"></img>
+              </div>
+              <div>
+                <span className="authorNameLink">{article.name}</span>
+              </div>
+            </div>
+            {renderLexicalState()}
+          </main>
+        </>
       ) : (
         <>
-          <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt="Loading" />
+          <img
+            src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"
+            alt="Loading"
+          />
           <p>Loading...</p>
         </>
       )}

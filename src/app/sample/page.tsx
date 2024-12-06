@@ -9,7 +9,6 @@ export default function sampleArticle() {
         </span>
         <span className="subTitle">Read the title</span>
         <span className="datePub">JANUARY 3RD, 2024 </span>
-
       </div>
       <div className="imgContainer">
         <img src="/whitehouse.jpg" width="100%"></img>
@@ -18,16 +17,8 @@ export default function sampleArticle() {
       <main>
         <div className="infoBox">
           <div className="authorImageBox">
-            <img
-              src="/rochelle.jpg"
-              className="authorImage"
-              width="70px"
-            ></img>
-            <img
-              src="/rochelle.jpg"
-              className="authorImage"
-              width="70px"
-            ></img>
+            <img src="/rochelle.jpg" className="authorImage" width="70px"></img>
+            <img src="/rochelle.jpg" className="authorImage" width="70px"></img>
           </div>
           <span className="authorNames">
             <span className="authorNameLink">William Lee</span> and{" "}

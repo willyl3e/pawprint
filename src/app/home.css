@@ -89,3 +89,12 @@
     margin-top:2em;
     display: block;
 }
+
+.main {
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.grid2 {
+    grid-template-columns: 55% 45%;
+}

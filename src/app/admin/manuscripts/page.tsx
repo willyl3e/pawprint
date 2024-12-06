@@ -6,6 +6,30 @@ import { useState, useEffect } from "react";
 import { BSON } from "mongodb";
 import formatMongoDate from "@/components/date";
 import Link from "next/link";
+import Form from "@/components/editForm";
+import { $getRoot, $getSelection, EditorState } from "lexical";
+import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
+import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
+import ToolbarPlugin from "@/components/plugins/ToolbarPlugin";
+import LexEditor from "@/components/lexicalEditorComponent";
+
+const theme = {
+};
+
+function onError(error: unknown) {
+  console.error("Lexical Editor Error:", error);
+}
+
+const initialConfig = {
+  namespace: "MyEditor",
+  theme,
+  onError,
+};
 
 type modifyMenuType = {
   shown: boolean;
@@ -232,138 +256,5 @@ export default function Home() {
         </>
       )}
     </>
-  );
-}
-
-function Form({ modifyMenuObject }: { modifyMenuObject: modifyMenuType }) {
-  const [successful, setSuccessful] = useState<boolean | undefined>(undefined);
-  const [formData, setFormData] = useState({
-    title: modifyMenuObject.title || "",
-    path: modifyMenuObject.path || "",
-    category: modifyMenuObject.category || "",
-    image: modifyMenuObject.image || "",
-    content: modifyMenuObject.content || "", // Ensure content is included here
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent page reload
-    try {
-      const res = await fetch("/api/modifyManuscript", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          actionType: "update",
-          id: modifyMenuObject.articleId,
-          title: formData.title,
-          content: formData.content,
-          path: formData.path,
-          category: formData.category,
-          img: formData.image,
-        }),
-      });
-
-      if (res.ok) {
-        setSuccessful(true);
-      } else if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-    } catch (error) {
-      console.error("Error fetching articles:", error);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Title
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          required
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Path
-        <input
-          type="text"
-          name="path"
-          value={formData.path}
-          required
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Category
-        <input
-          type="text"
-          name="category"
-          value={formData.category}
-          required
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Image SRC
-        <input
-          type="text"
-          name="image"
-          value={formData.image}
-          required
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Content
-        <textarea
-          name="content" // Ensure the name is "content"
-          value={formData.content} // Bind textarea to formData.content
-          onChange={handleChange} // Handle the change in the textarea
-          required
-        />
-      </label>
-
-      <button type="submit" className="adminButton standard">
-        Update
-      </button>
-      {successful && (
-        <span className="success">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-            fill="#78A75A"
-          >
-            <path d="M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z" />
-          </svg>
-          Successfully changed
-        </span>
-      )}
-      {successful === false && (
-        <span className="success">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-            fill="#78A75A"
-          >
-            <path d="M382-221.91 135.91-468l75.66-75.65L382-373.22l366.43-366.43L824.09-664 382-221.91Z" />
-          </svg>
-          Error
-        </span>
-      )}
-    </form>
   );
 }

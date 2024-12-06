@@ -1,0 +1,112 @@
+@font-face {
+  font-family: WorkSans;
+  src: url("/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: NeueHaas;
+  src: url("/fonts/NeueHaasDisplayRoman.ttf");
+}
+
+@font-face {
+  font-family: RobotoSlab;
+  src: url("/fonts/RobotoSlab.ttf");
+}
+
+nav {
+  text-align: center;
+  align-items: center;
+  padding: 15px 5px 5px 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: rgb(221, 221, 221);
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.7); /* semi-transparent background */
+  backdrop-filter: blur(10px); /* apply blur effect */
+}
+
+#body2 {
+  padding: 0;
+  background-color: blue;
+}
+
+main {
+  margin: 10px 32.5% 10px 32.5%;
+}
+
+.articleHead {
+  margin: 2% 32.5% 1.75% 32.5%;
+}
+
+.title {
+  font-size: 3em;
+  line-height: 1;
+  display: block;
+  font-weight: 600;
+}
+
+.subTitle {
+  font-size: 1.9em;
+  line-height: 1;
+  margin-top: 0.75em;
+  display: block;
+}
+
+p {
+  font-size: 1.25em;
+}
+
+.imgContainer {
+  text-align: center;
+  margin: 0 22.5% 2% 22.5%;
+}
+
+.caption {
+  color: rgb(182, 182, 182);
+  font-size: 0.9em;
+  display: block;
+  text-align: left;
+}
+
+.infoBox {
+  margin: 0% 0 5% 0;
+  display: block;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.authorImageBox {
+  display: block;
+}
+
+.authorImage {
+  border-radius: 50%;
+  margin-right: 10px;
+  filter: grayscale(100%);
+}
+
+.authorNames {
+  display: block;
+  font-size: 1.05em;
+  margin-top: 0.5em;
+}
+
+.authorNameLink {
+  border-bottom: solid;
+  border-bottom-width: 1px;
+}
+
+.datePub {
+  font-size: 0.9em;
+  color: rgb(182, 182, 182);
+  display: block;
+  margin-top: 5%;
+  font-family: WorkSans;
+}
+
+.pfp {
+height:40px;
+width:40px;
+  border-radius: 50%; /* This creates the circular shape */
+  object-fit: cover;
+}

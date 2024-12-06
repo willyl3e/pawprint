@@ -7,13 +7,10 @@ interface Manuscript {
   _id?: BSON.ObjectId;
   title: string;
   author: string;
-  date: Date;
-  path: string;
   category: string;
   img: string;
   content: string;
   history: string[];
-  status: string;
 }
 
 export async function POST(req: Request) {
@@ -40,13 +37,10 @@ export async function POST(req: Request) {
         const newDoc: Manuscript = {
           title,
           author: authenticatedUserId,
-          date: new Date(),
           content,
-          path,
           category,
           img,
           history: [`Created on ${new Date()} by ${authenticatedUserName}`],
-          status:"pending"
         };
         await collection.insertOne(newDoc);
         return new Response(JSON.stringify({ status: 200 }));
@@ -58,10 +52,8 @@ export async function POST(req: Request) {
             $set: {
               title,
               content,
-              path,
               category,
               img,
-              date: new Date(),
             },
             $push: {
               history: `Updated on ${new Date()} by ${authenticatedUserName}`,

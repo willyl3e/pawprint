@@ -162,7 +162,7 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); /* Adjusts position to exact center */
-  width: 25em; /* Adjust as needed */
+  width: 40em; /* Adjust as needed */
   background-color: white; /* Example background color */
   border-radius: 8px; /* Optional rounded corners */
   padding: 1.5%; /* Optional inner spacing */
