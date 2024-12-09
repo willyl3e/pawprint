@@ -61,7 +61,7 @@ export default function ClientPage({
     async function fetchData() {
       try {
         const res = await fetch(
-          `${process.env.VERCEL_URL}/api/retrieveArticle?articlePath=${params.articlePath}`,
+          `/api/retrieveArticle?articlePath=${params.articlePath}`,
           {
             method: "GET",
             headers: {

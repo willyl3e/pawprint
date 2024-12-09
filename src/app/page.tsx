@@ -26,7 +26,7 @@ function FilterArticles(
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`${process.env.VERCEL_URL}/api/getAllArticles`, {
+        const res = await fetch(`/api/getAllArticles`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -67,15 +67,13 @@ function generateArticleElements(
 ) {
   const returnedArticleArray = FilterArticles(cat, recency, numberOfArticles);
 
-  console.log(returnedArticleArray);
-
   const contents = returnedArticleArray?.map((x) => {
     const { monthString, dayString, numberday, year } = returnDateDetails(
       x.date
     );
     return (
       <>
-        <Link href={"/article/" + x._id}>
+        <Link href={"/article/" + x._id} key={x._id}>
           <div className="grid grid2 mb-8">
             <img src={x.img}></img>
             <div className="ml-5">

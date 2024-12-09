@@ -26,7 +26,7 @@ export default function CategoryPage({
 
   async function getCategoryArticles() {
     try {
-      const res = await fetch(`${process.env.VERCEL_URL}/api/getAllArticles`, {
+      const res = await fetch(`/api/getAllArticles`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

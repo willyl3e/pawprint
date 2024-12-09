@@ -55,7 +55,7 @@ export default function Home() {
     img?: string
   ) {
     try {
-      const res = await fetch(`${process.env.VERCEL_URL}/api/modifyManuscript`, {
+      const res = await fetch(`/api/modifyManuscript`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
