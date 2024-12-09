@@ -19,7 +19,11 @@ export async function POST(req: Request) {
     switch (actionType) {
       case "getAll":
         const data = await articlesCollection.find().toArray();
-        return new Response(JSON.stringify({ data }), { status: 200,   });
+        return new Response(JSON.stringify({ data }), { status: 200,  headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }, });
       case "recallAction":
         const username = session?.user.name;
         const selectedArticle = await articlesCollection.findOneAndDelete({
@@ -43,14 +47,19 @@ export async function POST(req: Request) {
 
         await index.deleteObject(id.toString())
 
-        return new Response(JSON.stringify({ status: 200,   }));
+        return new Response(JSON.stringify({ status: 200, headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },  }));
     }
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
-    return new Response(JSON.stringify({ error: "Internal Server Error", headers: {
-      "Access-Control-Allow-Origin": "*", 
-      "Content-Type": "application/json",
-    } }), {
+    return new Response(JSON.stringify({ error: "Internal Server Error",headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    }, }), {
       status: 500,
     });
   }

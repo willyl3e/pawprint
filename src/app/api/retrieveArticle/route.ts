@@ -10,8 +10,9 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(
       { error: "articlePath query parameter is required" },
       { status: 400, headers: {
-        "Access-Control-Allow-Origin": "*", // Allow requests from any origin (or specify domains)
-        "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       }, }
     );
   }
@@ -25,7 +26,11 @@ export async function GET(req: NextRequest) {
   });
 
   if (!selectedArticle) {
-    return NextResponse.json({ error: "Article not found" }, { status: 404 });
+    return NextResponse.json({ error: "Article not found" }, { status: 404, headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    }, });
   }
 
   const credentialsCollection = db.collection("credentials");
@@ -40,7 +45,8 @@ export async function GET(req: NextRequest) {
   const returnedCombined = { ...selectedArticle, ...authorInformation };
 
   return NextResponse.json({ data: returnedCombined }, {status:200, headers: {
-    "Access-Control-Allow-Origin": "*", 
-    "Content-Type": "application/json",
-  }});
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  },});
 }

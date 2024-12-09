@@ -33,15 +33,17 @@ export async function POST(req: Request) {
     }
 
     return new Response(JSON.stringify({ data }), { status: 200, headers: {
-      "Access-Control-Allow-Origin": "*", 
-      "Content-Type": "application/json",
-    } });
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    }, });
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
     return new Response(JSON.stringify({ error: "Internal Server Error", headers: {
-      "Access-Control-Allow-Origin": "*", 
-      "Content-Type": "application/json",
-    } }), {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    }, }), {
       status: 500,
     });
   }

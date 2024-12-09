@@ -35,7 +35,11 @@ export async function POST(req: Request) {
       case "getAllArticles": {
         const data = await collection.find().toArray();
 
-        return new Response(JSON.stringify({ data }), { status: 200 });
+        return new Response(JSON.stringify({ data }), { status: 200, headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }, });
       }
       case "comment": {
         await collection.updateOne(
@@ -46,7 +50,11 @@ export async function POST(req: Request) {
             },
           }
         );
-        return new Response(JSON.stringify({ status: 200,   }));
+        return new Response(JSON.stringify({ status: 200, headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },  }));
       }
       case "edit": {
         await collection.updateOne(
@@ -66,11 +74,19 @@ export async function POST(req: Request) {
           }
         );
 
-        return new Response(JSON.stringify({ status: 200,   }));
+        return new Response(JSON.stringify({ status: 200, headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },  }));
       }
       case "delete": {
         await collection.deleteOne({ _id: new BSON.ObjectId(id) });
-        return new Response(JSON.stringify({ status: 200,   }));
+        return new Response(JSON.stringify({ status: 200, headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },  }));
       }
       case "publish": {
         const articlesCollection: Collection<Manuscript> = await db.collection(
@@ -82,8 +98,9 @@ export async function POST(req: Request) {
 
         if (!manuscriptToBePublished) {
           return new Response(JSON.stringify({ data: "id aint valid", headers: {
-            "Access-Control-Allow-Origin": "*", 
-            "Content-Type": "application/json",
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
           } }));
         }
 
@@ -113,19 +130,28 @@ export async function POST(req: Request) {
           objectID: id,
         });
 
-        return new Response(JSON.stringify({ status: 200, data: "got it!",   }));
+        return new Response(JSON.stringify({ status: 200, data: "got it!",  headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }, }));
       }
       default:
-        return new Response(JSON.stringify({ error: "Invalid action type",   }), {
+        return new Response(JSON.stringify({ error: "Invalid action type",  headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }, }), {
           status: 400,
         });
     }
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ error: "Internal Server Error", headers: {
-      "Access-Control-Allow-Origin": "*", 
-      "Content-Type": "application/json",
-    } }), {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    }, }), {
       status: 500,
     });
   }
