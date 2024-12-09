@@ -26,7 +26,7 @@ function FilterArticles(
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("/api/getAllArticles", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/getAllArticles`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

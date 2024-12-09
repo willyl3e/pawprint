@@ -55,7 +55,7 @@ export default function Home() {
     img?: string
   ) {
     try {
-      const res = await fetch("/api/modifyManuscript", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/modifyManuscript`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

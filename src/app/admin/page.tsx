@@ -20,7 +20,7 @@ export default function Home() {
 
   const handlePfpChange = async () => {
     try {
-      const response = await fetch("/api/configurepfp", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/configurepfp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
