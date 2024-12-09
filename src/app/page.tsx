@@ -69,7 +69,7 @@ function generateArticleElements(
 
   console.log(returnedArticleArray);
 
-  let contents = returnedArticleArray?.map((x) => {
+  const contents = returnedArticleArray?.map((x) => {
     const { monthString, dayString, numberday, year } = returnDateDetails(
       x.date
     );

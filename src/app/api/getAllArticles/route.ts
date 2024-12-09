@@ -4,15 +4,10 @@ app.use(express.json());
 import clientPromise from "@/lib/mongodb";
 import { BSON } from "mongodb";
 
-type Credentials = {
-  _id: BSON.ObjectId;
-  name: string;
-};
-
 export async function POST(req: Request) {
   try {
     const bodyText = await req.text();
-    const { category, numberOfArticles, type } = JSON.parse(bodyText);
+    const { category, numberOfArticles } = JSON.parse(bodyText);
 
     const client = await clientPromise;
     const db = client.db("pawprint");

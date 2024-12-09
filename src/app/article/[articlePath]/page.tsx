@@ -124,7 +124,7 @@ export default function ClientPage({
   }
 
   const { monthString, dayString, numberday, year } = returnDateDetails(
-    article?.date!
+    article!.date!
   );
 
   return (

@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth/next";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { BSON } from "mongodb";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   const { pfp } = JSON.parse(await req.text());
   const session = await getServerSession(options);
   const client = await clientPromise;

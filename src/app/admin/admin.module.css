@@ -4,6 +4,11 @@
 }
 
 @font-face {
+  font-family: Segoessd;
+  src: url("/fonts/Segoe.ttf");
+}
+
+@font-face {
   font-family: NeueHaas;
   src: url("/fonts/NeueHaasDisplayRoman.ttf");
 }
@@ -25,7 +30,7 @@
 
 .main {
   margin: 0 27.5% 0 27.5%;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Segoessd, 'Segoe UI', WorkSans, Tahoma, Geneva, Verdana, sans-serif;
   padding: 3.5%;
   border-style: solid;
   border-radius: 15px;

@@ -3,7 +3,6 @@
 import { signIn } from "next-auth/react";
 import { useState, useEffect
  } from "react";
-import Link from "next/link";
 import "@/styles/globals.css";
 
 const CustomLogin: React.FC = () => {
