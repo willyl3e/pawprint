@@ -1,23 +1,32 @@
-import "./admin.css";
+import styles from "./admin.module.css";
 import Link from "next/link";
 import LogOut from "@/components/signOut";
+import './gen.css'
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Administrative Console',
+  description: 'The official Next.js Course Dashboard, built with App Router.',
+  metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <>
-      <nav>
+      <nav className={styles.nav}>
         {" "}
         <img src="/pawprintlogo.png" width="250px" alt="Pawprint Logo" />{" "}
         <br></br>
-        <LogOut></LogOut>
+        <LogOut />
       </nav>
-      <main>
+      <main className={styles.main}>
         <div style={{ display: "block", marginBottom: "2.5em" }}>
-          <Link className="resetLinkStyles topBackTrigger" href="/admin">
+          <Link className={`${styles.resetLinkStyles} ${styles.topBackTrigger}`} href="/admin">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -31,7 +40,7 @@ export default function RootLayout({
         </div>
         {children}
       </main>
-      <span className="adminc">
+      <span className={styles.adminc}>
         Copyright © 2024 Seymour High School Newspaper Club. All rights
         reserved.
       </span>

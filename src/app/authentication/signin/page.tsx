@@ -1,13 +1,19 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect
+ } from "react";
 import Link from "next/link";
+import "@/styles/globals.css";
 
 const CustomLogin: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    document.title = "Sign In";
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,11 +32,13 @@ const CustomLogin: React.FC = () => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "0 auto", padding: "1rem" }}>
-      <h2>Login</h2>
+    <div style={{ width: "400px" }} className="mt-20 block place-self-center">
+      <h2 className="text-[1.6em] mb-6">Login as a Pawprint member</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username" className="WorkSans text-[.9em]">
+            Username
+          </label>
           <input
             id="username"
             type="text"
@@ -38,10 +46,13 @@ const CustomLogin: React.FC = () => {
             onChange={(e) => setUsername(e.target.value)}
             required
             style={{ display: "block", width: "100%", marginTop: "0.5rem" }}
+            className="border-solid border-[#b6b6b6] border-[1px] rounded-[5px]"
           />
         </div>
         <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className=" text-[.9em] WorkSans">
+            Password
+          </label>
           <input
             id="password"
             type="password"
@@ -49,20 +60,15 @@ const CustomLogin: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
             style={{ display: "block", width: "100%", marginTop: "0.5rem" }}
+            className="border-solid border-[#b6b6b6] border-[1px] rounded-[5px]"
           />
         </div>
         <button
           type="submit"
           style={{
-            display: "block",
-            width: "100%",
-            padding: "0.75rem",
-            backgroundColor: "#0070f3",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
+            maxWidth: "200px",
           }}
+          className="mt-6 bg-blue-700 text-white p-2 rounded-md"
         >
           Sign In
         </button>
@@ -72,15 +78,6 @@ const CustomLogin: React.FC = () => {
           </p>
         )}
       </form>
-
-      <hr style={{ margin: "1.5rem 0" }} />
-
-      <p style={{ textAlign: "center", marginTop: "1rem" }}>
-        Don&apos;t have an account?{" "}
-        <Link className="lsr" href="/authentication/createaccount">
-          Create an account
-        </Link>
-      </p>
     </div>
   );
 };

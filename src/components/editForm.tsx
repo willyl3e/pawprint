@@ -1,17 +1,17 @@
-import { BSON } from "mongodb";
 import { useState } from "react";
 import LexEditor from "./lexicalEditorComponent";
+import styles from "@/app/admin/admin.module.css";
 
 type modifyMenuType = {
   shown: boolean;
-  articleId: BSON.ObjectId | null;
-  category: string | null;
-  image: string | null;
-  path: string | null;
-  author: string | null;
-  title: string | null;
-  history: string[] | null;
-  content: string | null;
+  articleId: string | null | undefined;
+  category: string | null | undefined;
+  image: string | null | undefined;
+  path: string | null | undefined;
+  author: string | null | undefined;
+  title: string | null | undefined;
+  history: string[] | null | undefined;
+  content: string | null | undefined;
 };
 
 export default function Form({
@@ -22,10 +22,10 @@ export default function Form({
   const [serializedState, setSerializedState] = useState<string | null>(null);
   const [successful, setSuccessful] = useState<boolean | undefined>(undefined);
 
-  console.log(modifyMenuObject.content!)
+  console.log(modifyMenuObject.content!);
 
-  const jsonContent = JSON.parse(modifyMenuObject.content!)
-  console.log(jsonContent)
+  const jsonContent = JSON.parse(modifyMenuObject.content!);
+  console.log(jsonContent);
 
   const [formData, setFormData] = useState({
     title: modifyMenuObject.title || "",
@@ -41,7 +41,7 @@ export default function Form({
   };
 
   const handleSubmit = async () => {
-    // e.preventDefault(); 
+    // e.preventDefault();
     if (!serializedState) {
       console.error("No serialized state available");
       setSuccessful(false);
@@ -77,7 +77,7 @@ export default function Form({
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      <label className={styles.label}>
         Title
         <input
           type="text"
@@ -85,9 +85,10 @@ export default function Form({
           value={formData.title}
           required
           onChange={handleChange}
+          className={styles.input}
         />
       </label>
-      <label>
+      <label className={styles.label}>
         Category
         <input
           type="text"
@@ -95,9 +96,10 @@ export default function Form({
           value={formData.category}
           required
           onChange={handleChange}
+          className={styles.input}
         />
       </label>
-      <label>
+      <label className={styles.label}>
         Image SRC
         <input
           type="text"
@@ -105,16 +107,33 @@ export default function Form({
           value={formData.image}
           required
           onChange={handleChange}
+          className={styles.input}
         />
       </label>
-      <label>Content</label>
-      <LexEditor onSerializedStateChange={setSerializedState} initialContent={modifyMenuObject.content!} />
+      <label className={styles.label}>Content</label>
+      <LexEditor
+        onSerializedStateChange={setSerializedState}
+        initialContent={modifyMenuObject.content!}
+      />
 
-      <button className="adminButton standard" type="submit">
+      <button
+        className={`${styles.adminButton} ${styles.standard}`}
+        type="submit"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="14px"
+          viewBox="0 -960 960 960"
+          width="14px"
+          fill="#1155cc"
+          className={`${styles.iconOffset}`}
+        >
+          <path d="M480-120q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T120-480q0-75 28.5-140.5t77-114q48.5-48.5 114-77T480-840q82 0 155.5 35T760-706v-94h80v240H600v-80h110q-41-56-101-88t-129-32q-117 0-198.5 81.5T200-480q0 117 81.5 198.5T480-200q105 0 183.5-68T756-440h82q-15 137-117.5 228.5T480-120Zm112-192L440-464v-216h80v184l128 128-56 56Z" />
+        </svg>
         Update
       </button>
       {successful && (
-        <span className="success">
+        <span className={styles.successful}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"

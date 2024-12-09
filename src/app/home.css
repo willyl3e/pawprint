@@ -1,100 +1,128 @@
 @font-face {
-    font-family: WorkSans;
-    src: url('/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf');
+  font-family: WorkSans;
+  src: url("/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf");
 }
 
 @font-face {
-    font-family: NeueHaas;
-    src: url('/fonts/NeueHaasDisplayRoman.ttf')
+  font-family: NeueHaas;
+  src: url("/fonts/NeueHaasDisplayRoman.ttf");
 }
 
 #homeContent {
-    margin:2em 20% 10em 20%;
-
+  margin: 2em 20% 10em 20%;
 }
 
 #topHeader {
-    display: grid;
-    grid-template-columns: 25% 50% 25%;
-    border-bottom-style:solid;
-    border-bottom-width: 1px;
-    border-bottom-color: rgb(199, 199, 199);
-    padding-bottom: 1em;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(199, 199, 199);
+  padding-bottom: 1em;
 }
 
 #frontsticky {
-    position: sticky
+  position: sticky;
 }
 
 .work {
-    font-family: WorkSans;
+  font-family: WorkSans;
 }
 
 .lineheight8 {
-    line-height: .5;
+  line-height: 0.5;
 }
 
 .leftHeaderText {
-    font-size:.8em
+  font-size: 0.8em;
 }
 
 .alignRight {
-    text-align: right;
-    align-items: right;
+  text-align: right;
+  align-items: right;
 }
 
 .leftHeaderContainer {
-    padding-right: 2em;
+  padding-right: 2em;
 }
 
 #nav {
-    border-bottom-style:solid;
-    border-bottom-width: 1px;
-    border-bottom-color: rgb(199, 199, 199);
-    padding: .1em 0 .1em 0;
-    margin-bottom:2em;
-    text-align: center;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(199, 199, 199);
+  padding: 0.1em 0 0.1em 0;
+  margin-bottom: 2em;
+  text-align: center;
 }
 
 #nav > div {
-    display: inline-block;
-    margin-left:.75em;
-    margin-right: .75em;
-    font-family: WorkSans;
-    font-size:.8em
+  display: inline-block;
+  margin-left: 0.75em;
+  margin-right: 0.75em;
+  font-family: WorkSans;
+  font-size: 0.8em;
 }
 
 #leadArticle {
-    display: grid;
-    grid-template-columns: 55% 45%;
+  display: grid;
+  grid-template-columns: 55% 45%;
 }
 
 #leadArticleText {
-    margin-left: 2em;
+  margin-left: 2em;
 }
 
 #leadTitle {
-    font-size: 3em;
-    line-height: .9;
-    display: inline-block;
-    margin-bottom: .3em;
+  font-size: 3em;
+  line-height: 0.9;
+  display: inline-block;
+  margin-bottom: 0.3em;
 }
 
 #leadSubtitle {
-    font-size:1.7em;
-    line-height: .9;
+  font-size: 1.7em;
+  line-height: 0.9;
 }
 
 .leadArticleSpacer {
-    margin-top:2em;
-    display: block;
+  margin-top: 2em;
+  display: block;
 }
 
 .main {
-    display: grid;
-    grid-template-columns: 70% 30%;
+  display: grid;
+  grid-template-columns: 80% 20%;
 }
 
 .grid2 {
-    grid-template-columns: 55% 45%;
+  grid-template-columns: 50% 55%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(100, 100, 100, 0.5); /* Greyed-out effect */
+  z-index: 1;
+  backdrop-filter: blur(4px); /* Blurs the background */
+}
+
+.left-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 350px; /* Adjust width as needed */
+  height: 100vh;
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Optional shadow for styling */
+  z-index: 2; /* Ensure it stays above the overlay */
+  padding: 20px 0 20px 0;
+}
+
+@media (max-width: 1300px) {
+  #homeContent {
+    margin: 2em 5% 10em 5%;
+  }
 }

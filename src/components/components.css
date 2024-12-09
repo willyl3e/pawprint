@@ -1,0 +1,115 @@
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 15px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: l5 1s infinite linear alternate;
+  place-self: center;
+  width: 10px;
+  display: block;
+  margin-top: 5em;
+}
+@keyframes l5 {
+  0% {
+    box-shadow: 20px 0 #000, -20px 0 #0002;
+    background: #000;
+  }
+  33% {
+    box-shadow: 20px 0 #000, -20px 0 #0002;
+    background: #0002;
+  }
+  66% {
+    box-shadow: 20px 0 #0002, -20px 0 #000;
+    background: #0002;
+  }
+  100% {
+    box-shadow: 20px 0 #0002, -20px 0 #000;
+    background: #000;
+  }
+}
+
+.custom-search-box {
+  border: 1px solid #cacaca;
+  border-radius: 8px;
+  padding: 8px;
+  display:block;
+  margin-bottom: 30px;
+}
+
+.custom-search-box input {
+  width: 95%;
+  font-size: 16px;
+}
+
+.hit {
+  border-radius: 5px;
+  margin: 15px 0 0 0;
+  display: block;
+  border-style:solid;
+  border-width:1px;
+  border-color:#cacaca;
+  padding:10px
+}
+
+.hit > h3{
+  font-size:1.5em;
+}
+
+.hit > h2{
+  font-size:.75em
+}
+
+.nav {
+  
+  text-align: center;
+  align-items: center;
+  padding: 15px 20% 5px 20%;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: rgb(221, 221, 221);
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(100, 100, 100, 0.5); /* Greyed-out effect */
+  z-index: 1;
+  backdrop-filter: blur(4px); /* Blurs the background */
+}
+
+.left-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 350px; /* Adjust width as needed */
+  height: 100vh;
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Optional shadow for styling */
+  z-index: 2; /* Ensure it stays above the overlay */
+  padding: 20px 0 20px 0;
+}
+
+.menuItem:hover{
+  cursor: pointer;
+}
+
+.articleBlock {
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+@media (max-width: 1300px) {
+  .nav {
+      padding: 15px 5% 10px 5%;
+
+  }
+
+}

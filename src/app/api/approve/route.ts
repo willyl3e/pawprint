@@ -3,7 +3,7 @@ import clientPromise from "@/lib/mongodb";
 import { getServerSession } from "next-auth/next";
 import algoliasearch from "algoliasearch";
 import { options } from "@/app/api/auth/[...nextauth]/options";
-const client = algoliasearch("1DNU60T3R9", "ec8bbb5e8c82c33b6037352c5d39e521"); // move to local env vars
+const client = algoliasearch(process.env.ALGOLIAID!, process.env.ALGOLIAKEY!);
 const index = client.initIndex("pawprint");
 
 interface Manuscript {
@@ -100,9 +100,13 @@ export async function POST(req: Request) {
           }
         );
 
+        const date = new Date()
+
         await index.saveObject({
-          title: title,
+          title: manuscriptToBePublished.title,
           author: authenticatedUserName,
+          img:manuscriptToBePublished.img,
+          date:date.toString(),
           objectID: id,
         });
 

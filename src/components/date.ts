@@ -1,17 +1,41 @@
-export default function formatMongoDate(mongoDate: Date | undefined): string {
-    if (!mongoDate) {
-        return "Date not available"; // Handle undefined case
+
+export default function returnDateDetails(dateString:string) {
+    const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ]
+
+    const weekdays = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+    ]
+
+    const jsDate = new Date(dateString)
+    const weekday = jsDate.getDay()
+    const month = jsDate.getMonth()
+    const numberday = jsDate.getDate().toString()
+    const year = jsDate.getFullYear().toString()
+
+    const monthString = months[month]
+    const dayString = weekdays[weekday]
+
+    return {
+        monthString,dayString,numberday,year
     }
 
-    const options: Intl.DateTimeFormatOptions = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-    };
-
-    return mongoDate.toLocaleString('en-US', options);
 }

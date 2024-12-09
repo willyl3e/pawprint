@@ -8,7 +8,7 @@ declare module "next-auth" {
     id: string;
     username: string;
     role?: string | null;
-    pfp?: string | null
+    pfp?: string | null;
   }
 
   interface Session {
@@ -17,15 +17,15 @@ declare module "next-auth" {
       username: string;
       name?: string | null;
       pfp?: string | null;
-      role?: string | null; // Add 'role' to session
+      role?: string | null;
     };
   }
 
   interface JWT {
     id: string;
     username: string;
-    role?: string | null; 
-    pfp?: string | null; 
+    role?: string | null;
+    pfp?: string | null;
   }
 }
 
@@ -55,8 +55,13 @@ export const options: NextAuthOptions = {
             user &&
             (await bcrypt.compare(credentials.password, user.password))
           ) {
-            // If the user is found and password is correct, return user data
-            return { id: user._id.toString(), username: user.username, name: user.name, pfp: user.pfp, role: user.role};
+            return {
+              id: user._id.toString(),
+              username: user.username,
+              name: user.name,
+              pfp: user.pfp,
+              role: user.role,
+            };
           }
 
           return null;
@@ -69,22 +74,18 @@ export const options: NextAuthOptions = {
   ],
 
   callbacks: {
-    // The jwt callback is triggered when a session is created or a JWT is updated
     async jwt({ token, user }) {
       if (user) {
-        // Store user data in the JWT token
         token.id = user.id;
         token.username = user.username;
         token.name = user.name;
         token.pfp = user.pfp;
-        token.role = user.role
+        token.role = user.role;
       }
       return token;
     },
 
-    // The session callback is triggered when a session is created or updated
     async session({ session, token }) {
-      // Attach user data from the JWT token to the session
       if (token) {
         session.user.id = token.id as string;
         session.user.username = token.username as string;
@@ -95,8 +96,7 @@ export const options: NextAuthOptions = {
       return session;
     },
   },
-  pages:{
-    signIn:'/authentication/signin'
-  }
+  pages: {
+    signIn: "/authentication/signin",
+  },
 };
-

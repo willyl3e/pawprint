@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 import "./article.css";
-import Link from "next/link";
+import LoadingAnimation from "@/components/loading";
+import returnDateDetails from "@/components/date";
+import '@/styles/globals.css'
+import Navigation from "@/components/nav";
 
 type ReturnedArticle = {
   title: string;
@@ -11,8 +14,8 @@ type ReturnedArticle = {
   content: string;
   path: string;
   img: string;
-  name:string;
-  pfp:string;
+  name: string;
+  pfp: string;
 };
 type LexicalNode = {
   detail: number;
@@ -116,25 +119,25 @@ export default function ClientPage({
         return formattedText;
       });
 
-      return <p key={index}>{paragraphContent}</p>;
+      return <p key={index} className="mt-5 mb-5">{paragraphContent}</p>;
     });
   }
 
+  const { monthString, dayString, numberday, year } = returnDateDetails(
+    article?.date!
+  );
+
   return (
     <div>
-      <nav>
-        <Link href="/">
-          <img src="/pawprintlogo.png" width="250px" style={{placeSelf:"Center"}}></img>
-        </Link>
-      </nav>
+      <Navigation></Navigation>
       {article ? (
         <>
           <div className="articleHead">
             <span className="title">{article.title}</span>
-            <span className="datePub">{article.date}</span>
+            <span className="datePub">{`${dayString}, ${monthString} ${numberday}, ${year}`}</span>
           </div>
           <div className="imgContainer">
-            <img src={article.img}></img>
+            <img src={article.img} width="100%"></img>
           </div>
           <main>
             <div className="infoBox">
@@ -149,13 +152,7 @@ export default function ClientPage({
           </main>
         </>
       ) : (
-        <>
-          <img
-            src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"
-            alt="Loading"
-          />
-          <p>Loading...</p>
-        </>
+        <LoadingAnimation></LoadingAnimation>
       )}
     </div>
   );

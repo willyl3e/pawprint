@@ -13,19 +13,6 @@
   src: url("/fonts/RobotoSlab.ttf");
 }
 
-nav {
-  text-align: center;
-  align-items: center;
-  padding: 15px 5px 5px 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-color: rgb(221, 221, 221);
-  position: sticky;
-  top: 0;
-  background-color: rgba(255, 255, 255, 0.7); /* semi-transparent background */
-  backdrop-filter: blur(10px); /* apply blur effect */
-}
-
 #body2 {
   padding: 0;
   background-color: blue;
@@ -105,8 +92,25 @@ p {
 }
 
 .pfp {
-height:40px;
-width:40px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%; /* This creates the circular shape */
   object-fit: cover;
+}
+
+@media (max-width: 1300px) {
+  main {
+    margin: 25px 25% 25px 25%;
+  }
+
+  .articleHead {
+    margin: 40px 25% 30px 25%;
+
+  }
+
+  .imgContainer {
+    margin: 25px 15% 25px 15%;
+
+  }
+
 }

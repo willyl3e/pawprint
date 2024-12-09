@@ -2,34 +2,49 @@ import algoliasearch from "algoliasearch";
 import { SearchBox, Hits } from "react-instantsearch";
 import { InstantSearchNext } from "react-instantsearch-nextjs";
 import Link from "next/link";
+import "./components.css";
+import "@/styles/globals.css";
+import returnDateDetails from "./date";
 
 const searchClient = algoliasearch(
   "1DNU60T3R9", // Your Algolia Application ID
-  "87138654c84f1bd46e6c7ab71e4df437" // Your Algolia Search-Only API Key
+  "07d6377fd2941f9a30964bcfbe03680c" // Your Algolia Search-Only API Key
 );
 
 type HitType = {
   title: string;
   author: string;
-  objectID:string
+  objectID: string;
+  img: string;
+  date: string;
 };
 
-const Hit: React.FC<{ hit: HitType }> = ({ hit }) => (
-  <Link href={"/article/"+hit.objectID}>
-    <div
-      className="hit"
-      style={{
-        border: "1px solid #ddd",
-        padding: "10px",
-        margin: "10px 0",
-        borderRadius: "5px",
-      }}
-    >
-      <h3>{hit.title}</h3>
-      <h2>{hit.author}</h2>
-    </div>
-  </Link>
-);
+const Hit: React.FC<{ hit: HitType }> = ({ hit }) => {
+  console.log(hit.date);
+
+  const { monthString, dayString, numberday, year } = returnDateDetails(
+    hit.date
+  );
+  
+  return (
+    <>
+      <Link href={`/article/${hit.objectID}`}>
+        <div key={hit.objectID} className="articleBlock mb-6">
+          <img src={hit.img} width="100%"></img>
+          <div className="ml-7">
+            <span className="block text-[2em] leading-9 mb-3 mt-1">
+              {hit.title}
+            </span>
+            <span className="WorkSans text-[#969696] text-[.8em]">
+              {hit.author} ∙{" "}
+            </span>
+            <span className="WorkSans text-[#969696] text-[.8em]">{`${dayString}, ${monthString} ${numberday}, ${year}`}</span>
+          </div>
+        </div>
+      </Link>
+    </>
+  );
+};
 
 export default Hit;
 
@@ -41,26 +56,17 @@ export function Search() {
         padding: "20px",
         maxWidth: "800px",
         margin: "auto",
+        placeSelf:"start"
       }}
     >
       <InstantSearchNext indexName="pawprint" searchClient={searchClient}>
-        <SearchBox />
+        <SearchBox
+          placeholder="Search articles..."
+          className="custom-search-box"
+          autoFocus={true}
+        />{" "}
         <Hits hitComponent={Hit} />
       </InstantSearchNext>
-
-      <style jsx>{`
-        .search-container {
-          padding: 20px;
-          max-width: 800px;
-          margin: auto;
-        }
-        .hit {
-          border: 1px solid #ddd;
-          padding: 10px;
-          margin: 10px 0;
-          border-radius: 5px;
-        }
-      `}</style>
     </div>
   );
 }

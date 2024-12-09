@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const uri = "mongodb+srv://williamlee080508:zTZxFzCop3d7mFJq@main.pwhbm.mongodb.net/?retryWrites=true&w=majority&appName=Main";
+const uri = process.env.MONGODB_URI;
 const options = {};
 
 // Extend globalThis to include _mongoClientPromise

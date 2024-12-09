@@ -1,6 +1,5 @@
 "use client";
-import "./../../admin.css";
-
+import styles from './../../admin.module.css';
 import { useState } from "react";
 import LexEditor from "@/components/lexicalEditorComponent";
 
@@ -49,9 +48,9 @@ export default function Home() {
 
   return (
     <>
-      <h1 className="adminHeader noBold">Create new manuscript</h1>
+      <h1 className={`${styles.adminHeader} ${styles.noBold}`}>Create new manuscript</h1>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className={styles.label}>
           Title
           <input
             type="text"
@@ -59,9 +58,10 @@ export default function Home() {
             value={formData.title}
             required
             onChange={handleChange}
+            className={styles.input}
           />
         </label>
-        <label>
+        <label className={styles.label}>
           Category
           <input
             type="text"
@@ -69,9 +69,11 @@ export default function Home() {
             value={formData.category}
             required
             onChange={handleChange}
+            className={styles.input}
+
           />
         </label>
-        <label>
+        <label className={styles.label}>
           Image Source
           <input
             type="text"
@@ -79,24 +81,26 @@ export default function Home() {
             value={formData.image}
             required
             onChange={handleChange}
+            className={styles.input}
+
           />
         </label>
-        <label>
+        <label className={styles.label}>
           Content
         </label>
         <LexEditor onSerializedStateChange={setSerializedState} initialContent="none" />
 
-        <span className="adminCNM">
-          When your manuscript is created, it will be be visible to editors
+        <span className={styles.adminCNM}>
+          When your manuscript is created, it will be visible to editors
           immediately and may be subject to editing. Submit only your final
           draft here.
         </span>
 
-        <button type="submit" className="adminButton standard">
+        <button type="submit" className={`${styles.adminButton} ${styles.standard}`}>
           Create new
         </button>
         {successful && (
-          <span className="success">
+          <span className={styles.success}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
@@ -110,7 +114,7 @@ export default function Home() {
           </span>
         )}
         {successful === false && (
-          <span className="success">
+          <span className={styles.success}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"

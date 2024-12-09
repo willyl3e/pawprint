@@ -1,27 +1,50 @@
-import express from 'express';
+import express from "express";
 const app = express();
 app.use(express.json());
-import clientPromise from '@/lib/mongodb';
+import clientPromise from "@/lib/mongodb";
+import { BSON } from "mongodb";
+
+type Credentials = {
+  _id: BSON.ObjectId;
+  name: string;
+};
 
 export async function POST(req: Request) {
   try {
     const bodyText = await req.text();
-    const { category, numberOfArticles } = JSON.parse(bodyText);
+    const { category, numberOfArticles, type } = JSON.parse(bodyText);
 
     const client = await clientPromise;
     const db = client.db("pawprint");
     const collection = db.collection("articles");
 
-    const data = await collection.find({category}).toArray();
+    console.log(category);
+
+    const data = await collection.find({ category }).toArray();
+
+    for (let i = 0; i < data.length; i++) {
+      const author = data[i].author;
+      const credentialsCollection = db.collection("credentials");
+
+      const authorNameObject = await credentialsCollection.findOne(
+        {
+          _id: new BSON.ObjectId(author),
+        },
+        { projection: { name: 1 } }
+      );
+
+      data[i].author = authorNameObject!.name
+    }
 
     if (numberOfArticles) {
-      data.splice(numberOfArticles)
+      data.splice(numberOfArticles);
     }
 
     return new Response(JSON.stringify({ data }), { status: 200 });
-    
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), { status: 500 });
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+    });
   }
 }

@@ -21,21 +21,20 @@ export async function GET(req: NextRequest) {
     _id: new BSON.ObjectId(selectedPath),
   });
 
-  
-
   if (!selectedArticle) {
     return NextResponse.json({ error: "Article not found" }, { status: 404 });
   }
 
   const credentialsCollection = db.collection("credentials");
+
   const authorInformation = await credentialsCollection.findOne(
     { _id: new BSON.ObjectId(selectedArticle!.author) },
     {
-      projection: { name: 1, pfp:1 },
+      projection: { name: 1, pfp: 1 },
     }
   );
 
-  const returnedCombined = {...selectedArticle, ...authorInformation}
+  const returnedCombined = { ...selectedArticle, ...authorInformation };
 
   return NextResponse.json({ data: returnedCombined });
 }
