@@ -19,10 +19,7 @@ export async function POST(req: Request) {
     switch (actionType) {
       case "getAll":
         const data = await articlesCollection.find().toArray();
-        return new Response(JSON.stringify({ data }), { status: 200, headers: {
-          "Access-Control-Allow-Origin": "*", 
-          "Content-Type": "application/json",
-        } });
+        return new Response(JSON.stringify({ data }), { status: 200,   });
       case "recallAction":
         const username = session?.user.name;
         const selectedArticle = await articlesCollection.findOneAndDelete({
@@ -46,10 +43,7 @@ export async function POST(req: Request) {
 
         await index.deleteObject(id.toString())
 
-        return new Response(JSON.stringify({ status: 200, headers: {
-          "Access-Control-Allow-Origin": "*", 
-          "Content-Type": "application/json",
-        } }));
+        return new Response(JSON.stringify({ status: 200,   }));
     }
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);

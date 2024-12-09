@@ -31,10 +31,7 @@ export async function POST(req: Request) {
         const data = await collection
           .find({ author: authenticatedUserId })
           .toArray();
-        return new Response(JSON.stringify({ data }), { status: 200, headers: {
-          "Access-Control-Allow-Origin": "*", 
-          "Content-Type": "application/json",
-        } });
+        return new Response(JSON.stringify({ data }), { status: 200,   });
       }
       case "create": {
         const newDoc: Manuscript = {
@@ -46,10 +43,7 @@ export async function POST(req: Request) {
           history: [`Created on ${new Date()} by ${authenticatedUserName}`],
         };
         await collection.insertOne(newDoc);
-        return new Response(JSON.stringify({ status: 200, headers: {
-          "Access-Control-Allow-Origin": "*", 
-          "Content-Type": "application/json",
-        } }));
+        return new Response(JSON.stringify({ status: 200,   }));
       }
       case "update": {
         await collection.updateOne(
@@ -66,23 +60,14 @@ export async function POST(req: Request) {
             },
           }
         );
-        return new Response(JSON.stringify({ status: 200, headers: {
-          "Access-Control-Allow-Origin": "*", 
-          "Content-Type": "application/json",
-        } }));
+        return new Response(JSON.stringify({ status: 200,   }));
       }
       case "delete": {
         await collection.deleteOne({ _id: new BSON.ObjectId(id) });
-        return new Response(JSON.stringify({ status: 200, headers: {
-          "Access-Control-Allow-Origin": "*", 
-          "Content-Type": "application/json",
-        } }));
+        return new Response(JSON.stringify({ status: 200,   }));
       }
       default:
-        return new Response(JSON.stringify({ error: "Invalid action type", headers: {
-          "Access-Control-Allow-Origin": "*", 
-          "Content-Type": "application/json",
-        } }), {
+        return new Response(JSON.stringify({ error: "Invalid action type",   }), {
           status: 400,
         });
     }
