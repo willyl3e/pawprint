@@ -35,7 +35,10 @@ export async function POST(req: Request) {
       case "getAllArticles": {
         const data = await collection.find().toArray();
 
-        return new Response(JSON.stringify({ data }), { status: 200 });
+        return new Response(JSON.stringify({ data }), { status: 200, headers: {
+          "Access-Control-Allow-Origin": "*", 
+          "Content-Type": "application/json",
+        } });
       }
       case "comment": {
         await collection.updateOne(
@@ -46,7 +49,10 @@ export async function POST(req: Request) {
             },
           }
         );
-        return new Response(JSON.stringify({ status: 200 }));
+        return new Response(JSON.stringify({ status: 200, headers: {
+          "Access-Control-Allow-Origin": "*", 
+          "Content-Type": "application/json",
+        } }));
       }
       case "edit": {
         await collection.updateOne(
@@ -66,11 +72,17 @@ export async function POST(req: Request) {
           }
         );
 
-        return new Response(JSON.stringify({ status: 200 }));
+        return new Response(JSON.stringify({ status: 200, headers: {
+          "Access-Control-Allow-Origin": "*", 
+          "Content-Type": "application/json",
+        } }));
       }
       case "delete": {
         await collection.deleteOne({ _id: new BSON.ObjectId(id) });
-        return new Response(JSON.stringify({ status: 200 }));
+        return new Response(JSON.stringify({ status: 200, headers: {
+          "Access-Control-Allow-Origin": "*", 
+          "Content-Type": "application/json",
+        } }));
       }
       case "publish": {
         const articlesCollection: Collection<Manuscript> = await db.collection(
@@ -81,7 +93,10 @@ export async function POST(req: Request) {
         });
 
         if (!manuscriptToBePublished) {
-          return new Response(JSON.stringify({ data: "id aint valid" }));
+          return new Response(JSON.stringify({ data: "id aint valid", headers: {
+            "Access-Control-Allow-Origin": "*", 
+            "Content-Type": "application/json",
+          } }));
         }
 
         await articlesCollection.insertOne(manuscriptToBePublished!);
@@ -110,16 +125,25 @@ export async function POST(req: Request) {
           objectID: id,
         });
 
-        return new Response(JSON.stringify({ status: 200, data: "got it!" }));
+        return new Response(JSON.stringify({ status: 200, data: "got it!", headers: {
+          "Access-Control-Allow-Origin": "*", 
+          "Content-Type": "application/json",
+        } }));
       }
       default:
-        return new Response(JSON.stringify({ error: "Invalid action type" }), {
+        return new Response(JSON.stringify({ error: "Invalid action type", headers: {
+          "Access-Control-Allow-Origin": "*", 
+          "Content-Type": "application/json",
+        } }), {
           status: 400,
         });
     }
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+    return new Response(JSON.stringify({ error: "Internal Server Error", headers: {
+      "Access-Control-Allow-Origin": "*", 
+      "Content-Type": "application/json",
+    } }), {
       status: 500,
     });
   }

@@ -9,7 +9,10 @@ export async function GET(req: NextRequest) {
   if (!selectedPath) {
     return NextResponse.json(
       { error: "articlePath query parameter is required" },
-      { status: 400 }
+      { status: 400, headers: {
+        "Access-Control-Allow-Origin": "*", // Allow requests from any origin (or specify domains)
+        "Content-Type": "application/json",
+      }, }
     );
   }
 
@@ -36,5 +39,8 @@ export async function GET(req: NextRequest) {
 
   const returnedCombined = { ...selectedArticle, ...authorInformation };
 
-  return NextResponse.json({ data: returnedCombined });
+  return NextResponse.json({ data: returnedCombined }, {status:200, headers: {
+    "Access-Control-Allow-Origin": "*", 
+    "Content-Type": "application/json",
+  }});
 }

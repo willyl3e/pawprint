@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import "./article.css";
 import LoadingAnimation from "@/components/loading";
 import returnDateDetails from "@/components/date";
-import '@/styles/globals.css'
+import "@/styles/globals.css";
 import Navigation from "@/components/nav";
 
 type ReturnedArticle = {
@@ -119,41 +119,50 @@ export default function ClientPage({
         return formattedText;
       });
 
-      return <p key={index} className="mt-5 mb-5">{paragraphContent}</p>;
+      return (
+        <p key={index} className="mt-5 mb-5">
+          {paragraphContent}
+        </p>
+      );
     });
   }
 
-  const { monthString, dayString, numberday, year } = returnDateDetails(
-    article!.date!
-  );
+  let returnedContent;
 
-  return (
-    <div>
-      <Navigation></Navigation>
-      {article ? (
-        <>
-          <div className="articleHead">
-            <span className="title">{article.title}</span>
-            <span className="datePub">{`${dayString}, ${monthString} ${numberday}, ${year}`}</span>
-          </div>
-          <div className="imgContainer">
-            <img src={article.img} width="100%"></img>
-          </div>
-          <main>
-            <div className="infoBox">
-              <div className="authorImageBox">
-                <img src={article.pfp} className="pfp"></img>
-              </div>
-              <div>
-                <span className="authorNameLink">{article.name}</span>
-              </div>
+  if (article) {
+    const { monthString, dayString, numberday, year } = returnDateDetails(
+      article!.date!
+    );
+    returnedContent = (
+      <div>
+        <Navigation></Navigation>
+        {article ? (
+          <>
+            <div className="articleHead">
+              <span className="title">{article.title}</span>
+              <span className="datePub">{`${dayString}, ${monthString} ${numberday}, ${year}`}</span>
             </div>
-            {renderLexicalState()}
-          </main>
-        </>
-      ) : (
-        <LoadingAnimation></LoadingAnimation>
-      )}
-    </div>
-  );
+            <div className="imgContainer">
+              <img src={article.img} width="100%"></img>
+            </div>
+            <main>
+              <div className="infoBox">
+                <div className="authorImageBox">
+                  <img src={article.pfp} className="pfp"></img>
+                </div>
+                <div>
+                  <span className="authorNameLink">{article.name}</span>
+                </div>
+              </div>
+              {renderLexicalState()}
+            </main>
+          </>
+        ) : (
+          <LoadingAnimation></LoadingAnimation>
+        )}
+      </div>
+    );
+  }
+
+  return  returnedContent ;
 }

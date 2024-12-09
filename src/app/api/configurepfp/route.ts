@@ -12,7 +12,13 @@ export async function POST(req: Request) {
 
   await collection.updateOne(
     { _id: new BSON.ObjectId(session?.user.id) },
-    { $set: {pfp: pfp} }
+    { $set: { pfp: pfp } }
   );
-  return Response.json({ status: 200 });
+  return Response.json({
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*", // Allow requests from any origin (or specify domains)
+      "Content-Type": "application/json",
+    },
+  });
 }

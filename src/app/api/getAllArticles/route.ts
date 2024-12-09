@@ -1,5 +1,6 @@
 import clientPromise from "@/lib/mongodb";
 import { BSON } from "mongodb";
+import { headers } from "next/headers";
 
 export async function POST(req: Request) {
   try {
@@ -32,10 +33,16 @@ export async function POST(req: Request) {
       data.splice(numberOfArticles);
     }
 
-    return new Response(JSON.stringify({ data }), { status: 200 });
+    return new Response(JSON.stringify({ data }), { status: 200, headers: {
+      "Access-Control-Allow-Origin": "*", 
+      "Content-Type": "application/json",
+    } });
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+    return new Response(JSON.stringify({ error: "Internal Server Error", headers: {
+      "Access-Control-Allow-Origin": "*", 
+      "Content-Type": "application/json",
+    } }), {
       status: 500,
     });
   }
