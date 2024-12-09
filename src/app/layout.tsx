@@ -19,7 +19,9 @@ export default function RootLayout({
               The Seymour Pawprint is the news imprint of the Seymour High
               School Newspaper Club in Seymour, Connecticut.{" "}
               <Link href="/admin" target="_BLANK">
-                <span className="text-blue-600 block mt-2">Pawprint for writers...</span>
+                <span className="text-blue-600 block mt-2">
+                  Pawprint for writers...
+                </span>
               </Link>
             </span>
             <div className="block place-self-end">

@@ -39,7 +39,10 @@ export default function Navigation() {
                 Opinion
               </div>
             </Link>
-            <div className="text-[.75em] pl-7 pr-4 pt-1 pb-1 mb-1 mt-5 WorkSans hover:bg-[#e7e7e7] cursor-pointer" onClick={()=>setSideNav(!sideNav)}>
+            <div
+              className="text-[.75em] pl-7 pr-4 pt-1 pb-1 mb-1 mt-5 WorkSans hover:bg-[#e7e7e7] cursor-pointer"
+              onClick={() => setSideNav(!sideNav)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="13px"
