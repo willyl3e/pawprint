@@ -1,6 +1,5 @@
 import clientPromise from "@/lib/mongodb";
 import { BSON } from "mongodb";
-import { headers } from "next/headers";
 
 export async function POST(req: Request) {
   try {
