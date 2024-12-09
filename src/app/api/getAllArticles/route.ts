@@ -1,6 +1,3 @@
-import express from "express";
-const app = express();
-app.use(express.json());
 import clientPromise from "@/lib/mongodb";
 import { BSON } from "mongodb";
 
