@@ -49,7 +49,7 @@ export default function Form({
     }
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/modifyManuscript`, {
+      const res = await fetch(`${process.env.VERCEL_URL}/api/modifyManuscript`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

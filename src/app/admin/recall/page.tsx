@@ -21,7 +21,7 @@ export default function Recall() {
   const [articleList, setArticleList] = useState<Article[]>();
 
   async function request(actionType: string, id?: BSON.ObjectId) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/recall`, {
+    const res = await fetch(`${process.env.VERCEL_URL}/api/recall`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

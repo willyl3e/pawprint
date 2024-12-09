@@ -14,7 +14,7 @@ function Comment({ id }: CommentProps) {
 
   async function postComment() {
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/approve`, {
+      await fetch(`${process.env.VERCEL_URL}/api/approve`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@ export default function Approve() {
     title: string | undefined,
     content: string | undefined
   ) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/approve`, {
+    const res = await fetch(`${process.env.VERCEL_URL}/api/approve`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
