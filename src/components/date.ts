@@ -30,6 +30,12 @@ export default function returnDateDetails(dateString:string) {
     const month = jsDate.getMonth()
     const numberday = jsDate.getDate().toString()
     const year = jsDate.getFullYear().toString()
+    let hour  = jsDate.getHours()
+    const minute  = jsDate.getMinutes()
+
+    if (hour > 13) {
+        hour = hour-12
+    }
 
     const monthString = months[month]
     const dayString = weekdays[weekday]
