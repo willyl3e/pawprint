@@ -31,7 +31,6 @@ export default function returnDateDetails(dateString:string) {
     const numberday = jsDate.getDate().toString()
     const year = jsDate.getFullYear().toString()
     let hour  = jsDate.getHours()
-    const minute  = jsDate.getMinutes()
 
     if (hour > 13) {
         hour = hour-12
