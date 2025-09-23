@@ -46,8 +46,9 @@ export default function CategoryPage({
   }
 
   const expandedNames: Record<string, string> = {
-    us: "United States",
+    seymour:"Seymour",
     ct: "Connecticut",
+    us: "United States",
     sports: "Sports",
     opinion: "Opinion",
   };

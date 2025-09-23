@@ -10,7 +10,8 @@ async function createAccount(
 ) {
   try {
     const hashedPassword = await bcrypt.hash(plainPassword, 10);
-    const client = await clientPromise;
+    // const client = new MongoClient("CONNECTIONURI AS STRING", {});
+    const client = await clientPromise
     const db = client.db("pawprint");
     const collection = db.collection("credentials");
 
@@ -30,4 +31,4 @@ async function createAccount(
   }
 }
 
-createAccount("Writer1", "Lee12345", "writer", "Best Writer", "");
+createAccount("erin.scozzafava", "VarsityBlues15", "editor", "Erin Scozzafava", "");

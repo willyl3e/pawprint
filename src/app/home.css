@@ -15,14 +15,16 @@
 #topHeader {
   display: grid;
   grid-template-columns: 25% 50% 25%;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: rgb(199, 199, 199);
+
   padding-bottom: 1em;
 }
 
 #frontsticky {
   position: sticky;
+}
+
+.text-fit {
+  font-size: clamp(20px, 10vw, 200px);
 }
 
 .work {

@@ -16,10 +16,10 @@ export default function RootLayout({
         <SessionProvider>{children}
           <Analytics></Analytics>
         </SessionProvider>
-        <footer className="border-t-[1px] border-[#cecece] mt-[4.5%] ml-[20%] mr-[20%] pt-4 mb-[3.5%] adminFooter max-xl:ml-[5%] max-xl:mr-[5%]">
+        <footer className=" pt-[4.5%] pl-[20%] pr-[20%] pb-[3.5%] adminFooter max-xl:ml-[5%] max-xl:mr-[5%] bg-blue-50 border-t-blue-300 border">
           <div className="grid grid-cols-2">
             <span className="block WorkSans text-[.7em] leading-[1em] text-[#aaaaaa]">
-              The Seymour Pawprint is the news imprint of the Seymour High
+              The Seymour Pawprint is an imprint of the Seymour High
               School Newspaper Club in Seymour, Connecticut.{" "}
               <Link href="/admin" target="_BLANK">
                 <span className="text-blue-600 block mt-2">

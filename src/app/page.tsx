@@ -74,13 +74,13 @@ function generateArticleElements(
     return (
       <>
         <Link href={"/article/" + x._id} key={x._id}>
-          <div className="grid grid2 mb-8">
+          <div className="mb-12">
             <img src={x.img}></img>
-            <div className="ml-5">
-              <span className="text-[2em] block leading-[1em] mt-2 mb-5">
+            <div className="">
+              <span className="text-4xl block leading-[1em] mt-5 mb-2  tracking-tighter">
                 {x.title}
               </span>
-              <span className="WorkSans text-[#969696] text-[.8em]">{`${dayString}, ${monthString} ${numberday}, ${year}`}</span>
+              <span className="inter text-[#969696] text-[.8em] tracking-tight">{`${dayString}, ${monthString} ${numberday}, ${year}`}</span>
             </div>
           </div>
         </Link>
@@ -99,6 +99,54 @@ export default function Home() {
 
   return (
     <>
+      <div className="bg-blue-50">
+        <div className=" ml-[20%] mr-[20%] text-7xl tracking-tighter text-blue-700 pt-[5%] border-blue-300 border-l border-r grid gird-cols-[60%_40%] pb-14">
+            <span className="font-medium pl-10">The Seymour Pawprint</span>
+        </div>
+        <div className=" pl-[20%] pr-[20%] grid grid-cols-[60%_40%] border-t border-blue-300">
+          <div className="border-blue-300 border-l border-r">
+            <div className=" p-10 bg-white">
+              <span className="text-blue-700 inter tracking-tight text-lg block mb-4 border-blue-300 pb-1">
+                Top story
+              </span>
+              <span className="mb-5 block text-5xl leading-[1] tracking-tighter">
+                Why we should allow freshman to take AP classes / Opinion
+              </span>
+
+              <img
+                width="100%"
+                src="https://s.wsj.net/public/resources/images/BN-SC528_APCRED_M_20170214182322.jpg"
+              ></img>
+            </div>
+          </div>
+          <div className="pr-8 pl-10">
+            <span className=" text-blue-700 tracking-tighter text-4xl block leading-[1.1] pt-8">
+              Seymour · United States · Connecticut · Sports · Opinion · Puzzles
+              · Classify
+            </span>
+          </div>
+          <div className="border-blue-300 border-l border-r h-24"></div>
+        </div>
+
+        <div className="grid grid-cols-[7.5%_60%_32.5%] min-h-64 pl-[20%] pr-[20%] border-t-blue-300 border-[1px]">
+          <div className="flex items-start justify-center text-5xl tracking-tighter text-blue-700 border-r border-blue-300">
+            <span className="transform rotate-90 whitespace-nowrap relative top-24 tracking-tight mr-6">
+              Seymour
+            </span>
+          </div>
+
+          <div className="border-blue-300 border-r p-10 bg-white">
+            {generateArticleElements("us", 30, 2)}
+          </div>
+          <div className="border-blue-230 border-t">
+            <p>Right side content</p>
+          </div>
+        </div>
+      </div>
+
+      {/*
+    <>
+    
       {sideNav && (
         <>
           <div className="overlay"></div>
@@ -108,6 +156,11 @@ export default function Home() {
               width="225px"
               className="ml-7 mb-6 mt-3"
             ></img>
+            <Link href={`/category/seymour`}>
+              <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans">
+                Seymour
+              </div>
+            </Link>
             <Link href={`/category/us`}>
               <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans">
                 U.S.
@@ -147,55 +200,58 @@ export default function Home() {
           </div>
         </>
       )}
-      <div id="homeContent">
-        <div id="frontsticky">
-          <div id="topHeader">
-            <div className="leftHeaderContainer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="30px"
-                viewBox="0 -960 960 960"
-                width="30px"
-                fill="#000000"
-                onClick={() => setSideNav(!sideNav)}
-                className="cursor-pointer"
-              >
-                <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
-              </svg>
-            </div>
-            <img src="/pawprintlogo.png" width="100%"></img>
-            <div className="alignRight">
-              <div className="text-right items-end">
-                <Link href="/search">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="30px"
-                    viewBox="0 -960 960 960"
-                    width="30px"
-                    fill="#000000"
-                    className="inline"
-                  >
-                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
-                  </svg>
-                </Link>
+      <div>
+        <div className="pt-[2%] pl-[20%] pr-[20%] bg-blue-900 text-white pb-14">
+          <div>
+            <div id="topHeader">
+              <div className="leftHeaderContainer">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="30px"
+                  viewBox="0 -960 960 960"
+                  width="30px"
+                  fill="#ffffff"
+                  onClick={() => setSideNav(!sideNav)}
+                  className="cursor-pointer"
+                >
+                  <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                </svg>
+              </div>
+              <div className="text-center">
+                <span className="text-3xl inter tracking-tight font-bold">
+                  Seymour Pawprint
+                </span>
+              </div>
+              <div className="alignRight">
+                <div className="text-right items-end">
+                  <Link href="/search">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="30px"
+                      viewBox="0 -960 960 960"
+                      width="30px"
+                      fill="#ffffff"
+                      className="inline"
+                    >
+                      <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                    </svg>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-          <div id="nav">
-            <i>The best (and only) newspaper in town!</i>
-          </div>
-        </div>
-        <div id="leadArticle">
-          <img
-            width="100%"
-            src="https://i1.wp.com/contingentmagazine.org/wp-content/uploads/2023/03/US_Navy_030402-N-5362A-004_U.S._Army_Sgt._Mark_Phiffer_stands_guard_duty_near_a_burning_oil_well_in_the_Rumaylah_Oil_Fields_in_Southern_Iraq.jpg?resize=771%2C506&ssl=1"
-          ></img>
-          <div id="leadArticleText">
-            <span id="leadTitle">Something about the news............</span>
-            <span id="leadSubtitle">
-              Details remain scarce, U.S. prepares response
-            </span>
-            <span className="small leadArticleSpacer">12/1/2024</span>
+          <div id="leadArticle">
+            <img
+              width="100%"
+              src="https://i1.wp.com/contingentmagazine.org/wp-content/uploads/2023/03/US_Navy_030402-N-5362A-004_U.S._Army_Sgt._Mark_Phiffer_stands_guard_duty_near_a_burning_oil_well_in_the_Rumaylah_Oil_Fields_in_Southern_Iraq.jpg?resize=771%2C506&ssl=1"
+            ></img>
+            <div id="leadArticleText">
+              <span id="leadTitle">Something about the news............</span>
+              <span id="leadSubtitle">
+                Details remain scarce, U.S. prepares response
+              </span>
+              <span className="small leadArticleSpacer">12/1/2024</span>
+            </div>
           </div>
         </div>
         <div className="main">
@@ -220,6 +276,7 @@ export default function Home() {
           <div className="rightArticles"></div>
         </div>
       </div>
+    </> */}
     </>
   );
 }

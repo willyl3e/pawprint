@@ -120,7 +120,7 @@ export default function ClientPage({
       });
 
       return (
-        <p key={index} className="mt-5 mb-5">
+        <p key={index} className="mt-5 mb-5 tracking-tighter text-2xl">
           {paragraphContent}
         </p>
       );
@@ -134,18 +134,18 @@ export default function ClientPage({
       article!.date!
     );
     returnedContent = (
-      <div>
+      <div className="bg-blue-50">
         <Navigation></Navigation>
-        {article ? (
+        {article && (
           <>
-            <div className="articleHead">
-              <span className="title">{article.title}</span>
+            <div className="articleHead pt-10">
+              <span className="title tracking-tighter text-6xl">{article.title}</span>
               <span className="datePub">{`${dayString}, ${monthString} ${numberday}, ${year}`}</span>
             </div>
             <div className="imgContainer">
               <img src={article.img} width="100%"></img>
             </div>
-            <main>
+            <main className="border-r bg-white border-l border-blue-300 pl-10 pr-10 pb-10">
               <div className="infoBox">
                 <div className="authorImageBox">
                   <img src={article.pfp} className="pfp"></img>
@@ -157,8 +157,6 @@ export default function ClientPage({
               {renderLexicalState()}
             </main>
           </>
-        ) : (
-          <LoadingAnimation></LoadingAnimation>
         )}
       </div>
     );

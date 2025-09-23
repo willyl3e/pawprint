@@ -13,29 +13,32 @@ export default function Navigation() {
       {sideNav && (
         <>
           <div className="overlay"></div>
-          <div className="left-div">
-            <img
-              src="/pawprintlogo.png"
-              width="225px"
-              className="ml-7 mb-6 mt-3"
-            ></img>
+          <div className="left-div ">
+            <span className="pl-7 pr-4 tracking-tighter text-blue-700 text-2xl mt-7 mb-4 block">
+              The Seymour Pawprint
+            </span>
+            <Link href="/category/seymour">
+              <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans tracking-tighter">
+                Seymour
+              </div>
+            </Link>
             <Link href={`/category/us`}>
-              <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans">
+              <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans tracking-tighter">
                 U.S.
               </div>
             </Link>
             <Link href={`/category/ct`}>
-              <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans">
+              <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans tracking-tighter">
                 Connecticut
               </div>
             </Link>
             <Link href={`/category/sports`}>
-              <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans">
+              <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans tracking-tighter">
                 Sports
               </div>
             </Link>
             <Link href={`/category/opinion`}>
-              <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans">
+              <div className="pl-7 pr-4 pt-1 pb-1 mb-1 mt-1 hover:bg-[#e7e7e7] WorkSans tracking-tighter">
                 Opinion
               </div>
             </Link>
@@ -58,13 +61,13 @@ export default function Navigation() {
           </div>
         </>
       )}
-      <nav className="nav">
+      <nav className="nav bg-blue-50 border-b-blue-50 drop-shadow-md">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="30px"
           viewBox="0 -960 960 960"
           width="30px"
-          fill="#000000"
+          fill="#1155cc"
           className="menuItem"
           onClick={() => setSideNav(!sideNav)}
         >
@@ -72,11 +75,9 @@ export default function Navigation() {
         </svg>
         <div className="inline">
           <Link href="/">
-            <img
-              src="/pawprintlogo.png"
-              width="250px"
-              className="place-self-center inline"
-            ></img>
+            <span className="tracking-tighter text-blue-700 text-3xl block mb-2">
+              The Seymour Pawprint
+            </span>
           </Link>
         </div>
         <div>
@@ -86,7 +87,7 @@ export default function Navigation() {
               height="30px"
               viewBox="0 -960 960 960"
               width="30px"
-              fill="#000000"
+              fill="#1155cc"
               className="place-self-end"
             >
               <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />

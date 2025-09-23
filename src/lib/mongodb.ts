@@ -1,31 +1,27 @@
 import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI;
-const options = {};
+const MAX_IDLE_TIME_MS = 15 * 60_000;
 
-// Extend globalThis to include _mongoClientPromise
+const client = new MongoClient(
+  process.env.MONGODB_URI!,
+  {
+    maxPoolSize: 2,
+    maxIdleTimeMS: MAX_IDLE_TIME_MS,
+  }
+);
+
 declare global {
-  // Using `globalThis` directly
-  var _mongoClientPromise: Promise<MongoClient> | undefined;
+  var _mongoClientPromise: Promise<MongoClient>;
 }
 
-let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
-if (!uri) {
-  throw new Error("Please add your Mongo URI to the environment variables.");
-}
-
 if (process.env.NODE_ENV === "development") {
-  // Use a global variable to persist the client during development
-  if (!globalThis._mongoClientPromise) {
-    client = new MongoClient(uri, options);
-    globalThis._mongoClientPromise = client.connect();
+  if (!global._mongoClientPromise) {
+    global._mongoClientPromise = client.connect();
   }
-  clientPromise = globalThis._mongoClientPromise;
+  clientPromise = global._mongoClientPromise;
 } else {
-  // In production, always create a new client
-  client = new MongoClient(uri, options);
   clientPromise = client.connect();
 }
 
