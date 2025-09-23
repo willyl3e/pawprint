@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import "./article.css";
-import LoadingAnimation from "@/components/loading";
 import returnDateDetails from "@/components/date";
 import "@/styles/globals.css";
 import Navigation from "@/components/nav";

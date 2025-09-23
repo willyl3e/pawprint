@@ -92,7 +92,6 @@ function generateArticleElements(
 }
 
 export default function Home() {
-  const [sideNav, setSideNav] = useState(false);
   useEffect(() => {
     document.title = "SHS Pawprint";
   });
