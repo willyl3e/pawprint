@@ -1,3 +1,29 @@
+'use client'
+
+import clientPromise from "@/lib/mongodb";
+import { useState } from "react";
+
+export default async function Page() {
+  const client = await clientPromise;
+  const db = client.db("pawprint");
+  const collection = db.collection("credentials");
+  const [query, setQuery] = useState("")
+
+  const handleChange = (event:<HTMLInputElement>) => {
+        setQuery(event.target.value); 
+      };
+
+
+  return (
+    <>
+      <span>Search for articles:</span>
+      <input></input>
+    </>
+  )
+}
+
+
+{/* 
 import algoliasearch from "algoliasearch";
 import { SearchBox, Hits } from "react-instantsearch";
 import { InstantSearchNext } from "react-instantsearch-nextjs";
@@ -69,4 +95,4 @@ export function Search() {
       </InstantSearchNext>
     </div>
   );
-}
+}*/}
