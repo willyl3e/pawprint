@@ -121,7 +121,7 @@ export default function Home() {
           <div className="pr-8 pl-10">
             <span className=" text-blue-700 tracking-tighter text-4xl block leading-[1.1] pt-8">
               Seymour · United States · Connecticut · Sports · Opinion · Puzzles
-              · Classify
+              · Classify · Comics & Photos · The Club · Search
             </span>
           </div>
           <div className="border-blue-300 border-l border-r h-24"></div>

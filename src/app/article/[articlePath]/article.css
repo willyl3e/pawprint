@@ -19,12 +19,9 @@
 }
 
 main {
-  margin: 10px 30% 10px 30%;
+  margin: 10px 40% 10px 20%;
 }
 
-.articleHead {
-  margin: 2% 32.5% 1.75% 32.5%;
-}
 
 .title {
   font-size: 3em;
@@ -46,7 +43,7 @@ p {
 
 .imgContainer {
   text-align: center;
-  margin: 0 22.5% 2% 22.5%;
+  padding: 0 22.5% 0% 22.5%;
 }
 
 .caption {

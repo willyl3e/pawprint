@@ -137,22 +137,30 @@ export default function ClientPage({
         <Navigation></Navigation>
         {article && (
           <>
-            <div className="articleHead pt-10">
-              <span className="title tracking-tighter text-6xl">{article.title}</span>
-              <span className="datePub">{`${dayString}, ${monthString} ${numberday}, ${year}`}</span>
-            </div>
-            <div className="imgContainer">
-              <img src={article.img} width="100%"></img>
-            </div>
-            <main className="border-r bg-white border-l border-blue-300 pl-10 pr-10 pb-10">
-              <div className="infoBox">
-                <div className="authorImageBox">
-                  <img src={article.pfp} className="pfp"></img>
-                </div>
-                <div>
-                  <span className="authorNameLink">{article.name}</span>
+            <div className="border-blue-300 border-b">
+              <div className="border-blue-300 border-l pt-14 ml-[20%] mr-[20%] pl-10 pr-10 border-r">
+                <span className="font-medium tracking-tighter text-7xl text-blue-700">
+                  {article.title}
+                </span>
+                <div className="grid grid-cols-2 mt-10 pb-10">
+                  <div>
+                    <span className="block inter text-blue-400 tracking-tight mb-1 mt-3">Authored on {`${dayString}, ${monthString} ${numberday}, ${year}`} by</span>
+                    <span className="text-blue-700 text-3xl tracking-tighter">{article.name} &apos;26</span>
+                  </div>
+                  {/* 
+                  <div className="">
+                    <img src={article.pfp} className="w-32" ></img>
+                  </div>*/}
                 </div>
               </div>
+            </div>
+            <main className="mt-0 border-r bg-white border-l border-blue-300 pt-12 pl-10 pr-10 pb-10 mb-0">
+              <img
+                src={article.img}
+                width="100%"
+                className="border-blue-300  border-[1px] mb-10"
+              ></img>
+
               {renderLexicalState()}
             </main>
           </>
@@ -161,5 +169,5 @@ export default function ClientPage({
     );
   }
 
-  return  returnedContent ;
+  return returnedContent;
 }

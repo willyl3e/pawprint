@@ -66,11 +66,7 @@
   padding: 15px 20% 5px 20%;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-color: rgb(221, 221, 221);
-  position: sticky;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
   display: grid;
   grid-template-columns: 10% 80% 10%;
 }

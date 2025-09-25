@@ -16,7 +16,7 @@ export default function RootLayout({
         <SessionProvider>{children}
           <Analytics></Analytics>
         </SessionProvider>
-        <footer className=" pt-[4.5%] pl-[20%] pr-[20%] pb-[3.5%] adminFooter max-xl:ml-[5%] max-xl:mr-[5%] bg-blue-50 border-t-blue-300 border">
+        <footer className="bg-blue-50 border-t-blue-300 border-t pt-[4.5%] pl-[20%] pr-[20%] pb-[3.5%] adminFooter max-xl:ml-[5%] max-xl:mr-[5%]">
           <div className="grid grid-cols-2">
             <span className="block WorkSans text-[.7em] leading-[1em] text-[#aaaaaa]">
               The Seymour Pawprint is an imprint of the Seymour High

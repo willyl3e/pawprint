@@ -61,7 +61,7 @@ export default function Navigation() {
           </div>
         </>
       )}
-      <nav className="nav bg-blue-50 border-b-blue-50 drop-shadow-md">
+      <nav className="nav bg-blue-50 border-b-blue-300 border-b-[1px]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="30px"
