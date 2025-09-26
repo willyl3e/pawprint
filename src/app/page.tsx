@@ -100,7 +100,7 @@ export default function Home() {
     <>
       <div className="bg-blue-50">
         <div className=" ml-[20%] mr-[20%] text-7xl tracking-tighter text-blue-700 pt-[5%] border-blue-300 border-l border-r grid gird-cols-[60%_40%] pb-14">
-            <span className="font-medium pl-10">The Seymour Pawprint</span>
+          <span className="font-medium pl-10">The Seymour Pawprint</span>
         </div>
         <div className=" pl-[20%] pr-[20%] grid grid-cols-[60%_40%] border-t border-blue-300">
           <div className="border-blue-300 border-l border-r">
