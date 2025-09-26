@@ -109,12 +109,12 @@ export default function Home() {
                 Top story
               </span>
               <span className="mb-5 block text-5xl leading-[1] tracking-tighter">
-                Why we should allow freshman to take AP classes / Opinion
+                Quran club kicks off with fresh energy
               </span>
 
               <img
                 width="100%"
-                src="https://s.wsj.net/public/resources/images/BN-SC528_APCRED_M_20170214182322.jpg"
+                src="https://images.pexels.com/photos/12631212/pexels-photo-12631212.jpeg"
               ></img>
             </div>
           </div>

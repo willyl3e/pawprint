@@ -18,28 +18,18 @@ export default function RootLayout({
         </SessionProvider>
         <footer className="bg-blue-50 border-t-blue-300 border-t pt-[4.5%] pl-[20%] pr-[20%] pb-[3.5%] adminFooter max-xl:ml-[5%] max-xl:mr-[5%]">
           <div className="grid grid-cols-2">
-            <span className="block WorkSans text-[.7em] leading-[1em] text-[#aaaaaa]">
+            <span className="block WorkSans text-[.7em] leading-[1em] text-blue-400 tracking-tight">
               The Seymour Pawprint is an imprint of the Seymour High
               School Newspaper Club in Seymour, Connecticut.{" "}
-              <Link href="/admin" target="_BLANK">
-                <span className="text-blue-600 block mt-2">
-                  Pawprint for writers...
-                </span>
-              </Link>
+              
             </span>
-            <div className="block place-self-end">
-              <Link href="/">
-                <img
-                  src="/pawprintlogo.png"
-                  width="200px"
-                  className="inline-block"
-                ></img>
-              </Link>
+            <div className="block place-self-end text-blue-700 tracking-tighter text-xl">
+              The Seymour Pawprint
             </div>
           </div>
-          <span className="text-[.7em] text-[#aaaaaa] block WorkSans mt-4 place-self-center">
-            Copyright © 2024 Seymour High School Newspaper Club. All rights
-            reserved.
+          <span className="tracking-tight text-[.7em] text-blue-400 block WorkSans mt-4 place-self-center">
+            Copyright © 2024-25 Seymour High School Newspaper Club. All rights
+            reserved.  Problems with this site?  Email 26wlee@students.seymourschools.org or william.lee@seymourpawprint.com
           </span>
         </footer>
       </body>

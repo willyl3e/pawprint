@@ -63,9 +63,7 @@
   
   text-align: center;
   align-items: center;
-  padding: 15px 20% 5px 20%;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
+  margin: 0px 20% 0px 20%;
   top: 0;
   display: grid;
   grid-template-columns: 10% 80% 10%;
