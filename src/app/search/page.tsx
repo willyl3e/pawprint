@@ -1,6 +1,6 @@
 "use client";
 
-import { Search } from "@/components/search";
+import Search from "@/components/search";
 import "@/styles/globals.css";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";

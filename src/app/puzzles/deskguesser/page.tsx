@@ -99,7 +99,7 @@ function WordEntryGame({
         </p>
       </header>
 
-      <span className="text-2xl tracking-tighter block mb-4 mt-2">Who&aspos;s desk is this?</span>
+      <span className="text-2xl tracking-tighter block mb-4 mt-2">Who&#8217;s desk is this?</span>
 
       <img className="w-64 mb-5" src="https://theartofeducation.edu/wp-content/uploads/2020/08/IMG_2116.jpg"></img>
 

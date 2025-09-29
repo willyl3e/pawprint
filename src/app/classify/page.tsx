@@ -5,7 +5,7 @@ import React from "react";
 
 function Course(name: string, instructor: string, path:string, icon: React.ReactNode) {
   return (
-    <Link href="/classify/">
+    <Link href={"/classify/courses/"+path}>
       <div className="border-b bg-white text-center p-8 border-blue-300 border-r hover:scale-110 hover:border-blue-300 hover:border transition delay-150 hover:cursor-pointer">
         {icon}
         <span className="block text-2xl tracking-tighter">{name}</span>

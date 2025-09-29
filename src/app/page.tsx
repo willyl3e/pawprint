@@ -109,7 +109,7 @@ export default function Home() {
                 Top story
               </span>
               <span className="mb-5 block text-5xl leading-[1] tracking-tighter">
-                Quran club kicks off with fresh energy
+                New Quran club brings multiculturalism to Seymour 
               </span>
 
               <img
@@ -120,8 +120,8 @@ export default function Home() {
           </div>
           <div className="pr-8 pl-10">
             <span className=" text-blue-700 tracking-tighter text-4xl block leading-[1.1] pt-8">
-              Seymour · United States · Connecticut · Sports · Opinion · Puzzles
-              · Classify · Comics & Photos · The Club · Search
+              Seymour · United States · Connecticut · Sports · Opinion · <Link href="/puzzles">Puzzles</Link>
+              · <Link href="/classify">Classify</Link> · Comics & Photos · The Club · Search
             </span>
           </div>
           <div className="border-blue-300 border-l border-r h-24"></div>
