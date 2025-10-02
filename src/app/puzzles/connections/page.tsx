@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "@/styles/globals.css";
 import Navigation from "@/components/nav";
+import { useSearchParams } from "next/navigation";
 
 type Tile = { id: string; text: string; groupId: string };
 type Group = { id: string; title: string; color: string };
@@ -62,7 +63,7 @@ function toShareGrid(solvedOrder: string[]): string {
   return rows.map((r) => r.map((gid) => map[gid]).join("")).join("\n");
 }
 */
-export default function ConnectionsGame({
+function ConnectionsGame({
   puzzle = SAMPLE_PUZZLE,
   title = "Week of October 29th",
   allowHints = false,
@@ -322,4 +323,14 @@ export default function ConnectionsGame({
       </div>
     </>
   );
+}
+
+export default function Page() {
+  const searchParams = useSearchParams();
+  const title = searchParams.get("title") ?? "Week of October 29th";
+  const allowHints =
+    searchParams.get("allowHints") === "1" ||
+    searchParams.get("allowHints") === "true";
+
+  return <ConnectionsGame title={title} allowHints={allowHints} />;
 }
