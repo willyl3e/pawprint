@@ -43,12 +43,14 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+/*
 function chunk<T>(arr: T[], size: number): T[][] {
   const out: T[][] = [];
   for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
   return out;
-}
+}*/
 
+/*
 function toShareGrid(solvedOrder: string[]): string {
   const map: Record<string, string> = {
     g1: "🟨",
@@ -59,7 +61,7 @@ function toShareGrid(solvedOrder: string[]): string {
   const rows = chunk(solvedOrder, 4);
   return rows.map((r) => r.map((gid) => map[gid]).join("")).join("\n");
 }
-
+*/
 export default function ConnectionsGame({
   puzzle = SAMPLE_PUZZLE,
   title = "Week of October 29th",
@@ -80,13 +82,13 @@ export default function ConnectionsGame({
   useEffect(() => {
     setTiles(shuffle(puzzle.tiles));
   }, [puzzle.tiles]);
-
+/*
   const solvedOrder = useMemo(() => {
     if (!tiles) return [] as string[];
     const order: string[] = [];
     tiles.forEach((t) => order.push(t.groupId));
     return order;
-  }, [tiles]);
+  }, [tiles]);*/
 
   const remainingGroups = useMemo(() => {
     return puzzle.groups.filter((g) => !lockedGroups.includes(g.id));

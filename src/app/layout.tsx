@@ -2,7 +2,6 @@
 
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
-import Link from "next/link";
 import { Analytics } from "@vercel/analytics/react"
 
 export default function RootLayout({
