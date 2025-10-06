@@ -1,4 +1,5 @@
 'use client';
+import Link from "next/link";
 
 import { useState } from "react";
 
@@ -17,8 +18,7 @@ export default function Search() {
   };
 
   return (
-    <div>
-      <span>Search for articles:</span>
+    <div className="pb-14">
       <input
         type="text"
         value={query}
@@ -30,11 +30,12 @@ export default function Search() {
         Search
       </button>
 
-      <div className="mt-4">
+      <div>
         {results.map((result, idx) => (
-          <div key={idx} className="p-2 border-b">
+          <Link href={`/article/${result._id}`} key={idx} >
+          <div className="p-2 border-b">
             {result.title || result.name || JSON.stringify(result)}
-          </div>
+          </div></Link>
         ))}
       </div>
     </div>

@@ -1,8 +1,8 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+
+import React, { useEffect, /*useMemo,*/ useState } from "react";
 import "@/styles/globals.css";
 import Navigation from "@/components/nav";
-import { useSearchParams } from "next/navigation";
 
 type Tile = { id: string; text: string; groupId: string };
 type Group = { id: string; title: string; color: string };
@@ -44,60 +44,27 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-/*
-function chunk<T>(arr: T[], size: number): T[][] {
-  const out: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
-}*/
-
-/*
-function toShareGrid(solvedOrder: string[]): string {
-  const map: Record<string, string> = {
-    g1: "🟨",
-    g2: "🟩",
-    g3: "🟦",
-    g4: "🟪",
-  };
-  const rows = chunk(solvedOrder, 4);
-  return rows.map((r) => r.map((gid) => map[gid]).join("")).join("\n");
-}
-*/
-function ConnectionsGame({
-  puzzle = SAMPLE_PUZZLE,
-  title = "Week of October 29th",
-  allowHints = false,
-}: {
-  puzzle?: Puzzle;
-  title?: string;
-  allowHints?: boolean;
-}) {
-  const [tiles, setTiles] = useState<Tile[] | null>(null);
+export default function Page() {
+  const [tiles, setTiles] = useState<Tile[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
   const [lockedGroups, setLockedGroups] = useState<string[]>([]);
-  const [mistakes, setMistakes] = useState<number>(0);
+  const [mistakes, setMistakes] = useState(0);
   const [message, setMessage] = useState<string | null>(null);
+  const [won, setWon] = useState(false);
   const [history, setHistory] = useState<string[][]>([]);
-  const [won, setWon] = useState<boolean>(false);
 
   useEffect(() => {
-    setTiles(shuffle(puzzle.tiles));
-  }, [puzzle.tiles]);
-/*
-  const solvedOrder = useMemo(() => {
-    if (!tiles) return [] as string[];
-    const order: string[] = [];
-    tiles.forEach((t) => order.push(t.groupId));
-    return order;
-  }, [tiles]);*/
+    setTiles(shuffle(SAMPLE_PUZZLE.tiles));
+  }, []);
+
+  /*
 
   const remainingGroups = useMemo(() => {
-    return puzzle.groups.filter((g) => !lockedGroups.includes(g.id));
-  }, [puzzle.groups, lockedGroups]);
+    return SAMPLE_PUZZLE.groups.filter((g) => !lockedGroups.includes(g.id));
+  }, [lockedGroups]);*/
 
   function lockedTileIds(): Set<string> {
     const ids = new Set<string>();
-    if (!tiles) return ids;
     tiles.forEach((t) => {
       if (lockedGroups.includes(t.groupId)) ids.add(t.id);
     });
@@ -105,8 +72,7 @@ function ConnectionsGame({
   }
 
   function toggle(id: string) {
-    if (won || !tiles) return;
-    if (lockedTileIds().has(id)) return;
+    if (won || lockedTileIds().has(id)) return;
     setSelected((prev) =>
       prev.includes(id)
         ? prev.filter((x) => x !== id)
@@ -117,16 +83,15 @@ function ConnectionsGame({
   }
 
   function submitGuess() {
-    if (!tiles || selected.length !== 4) return;
+    if (selected.length !== 4) return;
     const selTiles = tiles.filter((t) => selected.includes(t.id));
     const groupId = selTiles[0].groupId;
     const isAllSame = selTiles.every((t) => t.groupId === groupId);
 
     if (isAllSame) {
       setLockedGroups((prev) => [...prev, groupId]);
-      setMessage("Correct! Group locked.");
+      setMessage("✅ Correct! Group locked.");
       setTiles((prev) => {
-        if (!prev) return prev;
         const correct = prev.filter((t) => selected.includes(t.id));
         const rest = prev.filter((t) => !selected.includes(t.id));
         return [...correct, ...rest];
@@ -134,34 +99,18 @@ function ConnectionsGame({
       setSelected([]);
     } else {
       setMistakes((m) => m + 1);
-      setMessage("Not quite. Try again.");
+      setMessage("❌ Not quite. Try again.");
       setHistory((h) => [...h, selected]);
     }
   }
 
   function shuffleTiles() {
-    if (!tiles) return;
     setTiles((prev) => {
-      if (!prev) return prev;
       const locked = prev.filter((t) => lockedGroups.includes(t.groupId));
       const free = prev.filter((t) => !lockedGroups.includes(t.groupId));
       return [...locked, ...shuffle(free)];
     });
-    setMessage("Shuffled remaining tiles.");
-  }
-
-  function hint() {
-    if (!allowHints || !tiles) return;
-    const free = tiles.filter((t) => !lockedGroups.includes(t.groupId));
-    for (const g of remainingGroups) {
-      const candidates = free.filter((t) => t.groupId === g.id);
-      if (candidates.length >= 2) {
-        const ids = candidates.slice(0, 2).map((t) => t.id);
-        setSelected(ids);
-        setMessage("Hint: these two belong together.");
-        return;
-      }
-    }
+    setMessage("🔀 Shuffled remaining tiles.");
   }
 
   function deselectAll() {
@@ -179,12 +128,12 @@ function ConnectionsGame({
   useEffect(() => {
     if (lockedGroups.length === 4) {
       setWon(true);
-      setMessage("You solved it! 🎉");
+      setMessage("🎉 You solved it!");
     }
   }, [lockedGroups]);
 
   function reset() {
-    setTiles(shuffle(puzzle.tiles));
+    setTiles(shuffle(SAMPLE_PUZZLE.tiles));
     setSelected([]);
     setLockedGroups([]);
     setMistakes(0);
@@ -193,17 +142,14 @@ function ConnectionsGame({
     setHistory([]);
   }
 
- 
   return (
     <>
-      <Navigation></Navigation>
-      <div className="bg-blue-50">
+      <Navigation />
+      <div className="bg-blue-50 min-h-screen">
         <div className="border-blue-300 border-b">
-          <div className=" ml-[20%] mr-[20%] tracking-tighter text-blue-700 pt-14 pb-8 border-blue-300 border-l border-r ">
+          <div className="ml-[20%] mr-[20%] tracking-tighter text-blue-700 pt-14 pb-8 border-blue-300 border-l border-r">
             <div className="p-10">
-              <span className="font-medium text-4xl inline-block">
-                Puzzles
-              </span>
+              <span className="font-medium text-4xl inline-block">Puzzles</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="25px"
@@ -221,43 +167,36 @@ function ConnectionsGame({
 
         <div className="ml-[20%] mr-[20%] p-14 border-blue-300 border-l border-r bg-white">
           <header className="mb-4 flex items-center justify-between">
-            <h1 className="text-3xl tracking-tight">{title}</h1>
+            <h1 className="text-3xl tracking-tight">Week of October 29th</h1>
             <div className="text-sm text-gray-400">Mistakes: {mistakes}</div>
           </header>
 
           <div className="grid grid-cols-4 gap-2">
-            {tiles
-              ? tiles.map((t) => {
-                  const isLocked = lockedGroups.includes(t.groupId);
-                  const isSelected = selected.includes(t.id);
-                  const base = isLocked
-                    ? puzzle.groups.find((g) => g.id === t.groupId)?.color ||
-                      "bg-gray-200"
-                    : " hover:scale-110 bg-blue-50";
-                  return (
-                    <button
-                      key={t.id}
-                      onClick={() => toggle(t.id)}
-                      className={`select-none  border border-blue-300 p-4 text-center tracking-tight shadow-sm transition text-blue-700 ${base} ${
-                        isSelected ? "ring-4 ring-black/30" : ""
-                      } ${isLocked ? "cursor-default" : ""}`}
-                    >
-                      {t.text}
-                    </button>
-                  );
-                })
-              : Array.from({ length: 16 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-16  border border-gray-200 bg-gray-100 animate-pulse"
-                  />
-                ))}
+            {tiles.map((t) => {
+              const isLocked = lockedGroups.includes(t.groupId);
+              const isSelected = selected.includes(t.id);
+              const base = isLocked
+                ? SAMPLE_PUZZLE.groups.find((g) => g.id === t.groupId)?.color ||
+                  "bg-gray-200"
+                : "hover:scale-110 bg-blue-50";
+              return (
+                <button
+                  key={t.id}
+                  onClick={() => toggle(t.id)}
+                  className={`select-none border border-blue-300 p-4 text-center tracking-tight shadow-sm transition text-blue-700 ${base} ${
+                    isSelected ? "ring-4 ring-black/30" : ""
+                  } ${isLocked ? "cursor-default" : ""}`}
+                >
+                  {t.text}
+                </button>
+              );
+            })}
           </div>
 
           <div className="my-4 space-y-2">
-            {puzzle.groups.map((g) =>
+            {SAMPLE_PUZZLE.groups.map((g) =>
               lockedGroups.includes(g.id) ? (
-                <div key={g.id} className={` ${g.color} p-3 font-medium`}>
+                <div key={g.id} className={`${g.color} p-3 font-medium`}>
                   {g.title}
                 </div>
               ) : null
@@ -268,49 +207,30 @@ function ConnectionsGame({
             <button
               onClick={submitGuess}
               disabled={selected.length !== 4 || won}
-              className=" border-blue-300   bg-black px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-40"
+              className="border-blue-300 bg-black px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-40"
             >
               Submit
             </button>
             <button
               onClick={shuffleTiles}
               disabled={won}
-              className=" border-blue-300 border px-4 py-2 "
+              className="border-blue-300 border px-4 py-2"
             >
               Shuffle
             </button>
-            <button
-              onClick={deselectAll}
-              className=" border-blue-300 border px-4 py-2 "
-            >
+            <button onClick={deselectAll} className="border-blue-300 border px-4 py-2">
               Deselect
             </button>
-            {allowHints && (
-              <button
-                onClick={hint}
-                disabled={won}
-                className=" border-blue-300  border px-4 py-2 "
-              >
-                Hint
-              </button>
-            )}
-            <button
-              onClick={undo}
-              className=" border-blue-300 border px-4 py-2 "
-            >
+            <button onClick={undo} className="border-blue-300 border px-4 py-2">
               Undo
             </button>
-            
-            <button
-              onClick={reset}
-              className=" border-blue-300 border px-4 py-2 "
-            >
+            <button onClick={reset} className="border-blue-300 border px-4 py-2">
               New Game
             </button>
           </div>
 
           {message && (
-            <div className="mt-3  bg-gray-50 p-3 text-sm text-gray-800 shadow-inner">
+            <div className="mt-3 bg-gray-50 p-3 text-sm text-gray-800 shadow-inner">
               {message}
             </div>
           )}
@@ -323,14 +243,4 @@ function ConnectionsGame({
       </div>
     </>
   );
-}
-
-export default function Page() {
-  const searchParams = useSearchParams();
-  const title = searchParams.get("title") ?? "Week of October 29th";
-  const allowHints =
-    searchParams.get("allowHints") === "1" ||
-    searchParams.get("allowHints") === "true";
-
-  return <ConnectionsGame title={title} allowHints={allowHints} />;
 }
