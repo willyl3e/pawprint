@@ -109,7 +109,7 @@ export default function Home() {
                 Top story
               </span>
               <span className="mb-5 block text-5xl leading-[1] tracking-tighter">
-                New Quran club brings multiculturalism to Seymour 
+                New Quran club brings multiculturalism to Seymour
               </span>
 
               <img
@@ -135,12 +135,72 @@ export default function Home() {
           </div>
 
           <div className="border-blue-300 border-r p-10 bg-white">
+            {generateArticleElements("seymour", 30, 2)}
+          </div>
+          <div className="border-blue-230 border-t">
+            <p>Right side content</p>
+          </div>
+        </div>
+
+
+        <div className="grid grid-cols-[7.5%_60%_32.5%] min-h-64 pl-[20%] pr-[20%] border-t-blue-300 border-[1px]">
+          <div className="flex items-start justify-center text-5xl tracking-tighter text-blue-700 border-r border-blue-300">
+            <span className="transform rotate-90 whitespace-nowrap relative top-24 tracking-tight mr-6">
+              Culture
+            </span>
+          </div>
+
+          <div className="border-blue-300 border-r p-10 bg-white">
+            {generateArticleElements("culture", 30, 2)}
+          </div>
+          <div className="border-blue-230 border-t">
+            <p>Right side content</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-[7.5%_60%_32.5%] min-h-64 pl-[20%] pr-[20%] border-t-blue-300 border-[1px]">
+          <div className="flex items-start justify-center text-5xl tracking-tighter text-blue-700 border-r border-blue-300">
+            <span className="transform rotate-90 whitespace-nowrap relative top-24 tracking-tight mr-6">
+              Science
+            </span>
+          </div>
+
+          <div className="border-blue-300 border-r p-10 bg-white">
+            {generateArticleElements("science", 30, 2)}
+          </div>
+          <div className="border-blue-230 border-t">
+            <p>Right side content</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-[7.5%_60%_32.5%] min-h-64 pl-[20%] pr-[20%] border-t-blue-300 border-[1px]">
+          <div className="flex items-start justify-center text-5xl tracking-tighter text-blue-700 border-r border-blue-300">
+            <span className="transform rotate-90 whitespace-nowrap relative top-24 tracking-tight mr-6">
+              United States
+            </span>
+          </div>
+
+          <div className="border-blue-300 border-r p-10 bg-white">
             {generateArticleElements("us", 30, 2)}
           </div>
           <div className="border-blue-230 border-t">
             <p>Right side content</p>
           </div>
         </div>
+
+        <div className="grid grid-cols-[7.5%_60%_32.5%] min-h-64 pl-[20%] pr-[20%] border-t-blue-300 border-[1px]">
+          <div className="flex items-start justify-center text-5xl tracking-tighter text-blue-700 border-r border-blue-300">
+            <span className="transform rotate-90 whitespace-nowrap relative top-24 tracking-tight mr-6">
+              Connecticut
+            </span>
+          </div>
+
+          <div className="border-blue-300 border-r p-10 bg-white">
+            {generateArticleElements("ct", 30, 2)}
+          </div>
+          <div className="border-blue-230 border-t">
+            <p>Right side content</p>
+          </div>
+        </div>
+
       </div>
 
       {/*
